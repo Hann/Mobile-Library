@@ -1,0 +1,78 @@
+//
+//table generating function. mixin equals function.
+//
+
+mixin generateTable(two_dimension_array)
+  table.table.table-bordered
+    tbody
+      for i_two in two_dimension_array
+        tr
+          for i_one in i_two
+            td(id = #{i_one}) #{i_one}
+
+
+//
+// contents
+//
+
+div#page1(data-role="page")
+  div(data-role="header", data-position="fixed")
+    h1 #{title}
+    div(data-role="navbar",data-iconpos="top")
+      ul
+        li
+          a(href="#",data-theme="",data-icon="",class="ui-btn-active") 2-1열
+        li
+          a(href="#",data-theme="",data-icon="") 2-2열
+        li
+          a(href="#",data-theme="",data-icon="") 2-3열
+        li
+          a(href="#",data-theme="",data-icon="") 4-6열
+        li
+          a(href="#",data-theme="",data-icon="") 4-7열
+  div(data-role="content")
+
+    - var table_no_array = [['01','02','03','04','05'], ['10','09','08','07','06']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['11','12','13','14','15'], ['20','19','18','17','16']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['21','22','23','24','25'], ['30','29','28','27','26']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['31','32','33','34','35'], ['40','39','38','37','36']]
+    mixin generateTable(table_no_array)
+  div(data-theme="a",data-role="footer")
+    h3 @hannJS
+
+div#page2(data-role="page")
+  div(data-role="header", data-position="fixed")
+    h1 #{title}
+    div(data-role="navbar",data-iconpos="top")
+      ul
+        li
+          a(href="#",data-theme="",data-icon="",class="ui-btn-active") 2-1열
+        li
+          a(href="#",data-theme="",data-icon="") 2-2열
+        li
+          a(href="#",data-theme="",data-icon="") 2-3열
+        li
+          a(href="#",data-theme="",data-icon="") 4-6열
+        li
+          a(href="#",data-theme="",data-icon="") 4-7열
+  div(data-role="content")
+
+    - var table_no_array = [['01','02','03','04','05'], ['10','09','08','07','06']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['11','12','13','14','15'], ['20','19','18','17','16']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['21','22','23','24','25'], ['30','29','28','27','26']]
+    mixin generateTable(table_no_array)
+
+    - var table_no_array = [['31','32','33','34','35'], ['40','39','38','37','36']]
+    mixin generateTable(table_no_array)
+  div(data-theme="a",data-role="footer")
+    h3 @hannJS
