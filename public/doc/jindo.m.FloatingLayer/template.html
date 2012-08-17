@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : {+data.alias+} </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+					{+include("menu.html")+}
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">{+data.alias+}</h3>
+							<p class="p_txt2">
+								<span>Version : {+publish.conf.version+}</span>
+								<br />
+								스크롤이 발생하더라도 화면의 특정위치에 레이어가 띄워져 있는 컴포넌트
+							</p>
+							<a href="../../sample/latest/{+data.alias+}/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+					<!-- 상세 설명 -->
+					<h3>Description</h3>
+					<div class="t1">
+						FloatingLayer 컴포넌트는 아래 그림과 같이 스크롤이 발생하더라도 화면의 특정위치에 레이어가 띄워져 사용자에게 메시지를 알리는 기능을 하는 컴포넌트이다.<br/><br/>
+						
+						<div style="border:1px solid #d1d1d1;padding:5px;width:280px;height:370px;"><img width=280 height=370 src="../resource/img/FloatingLayer.jpg"></div>
+						[사용예시]<br><br>
+						
+						<strong>기능 설명</strong><br>
+						<div class="point_box">
+							<ul class="t2">
+							<li>레이어의 위치(top, center, bottom)를 옵션(sPosition)을 통해 지정할 수 있다.</li>
+							<li>show 호출시 slide 애니메이션 효과가 발생되며, 이때 발생하는 애니메이션의 방향(sDirection) 및 속도(nSlideDuration)는 옵션을 통해 지정가능하다.</li>
+							<li>사용자가 스크롤링을 할때, FloatingLayer가 사라졌다가, 스크롤이 끝나면 다시 Fade-in된다.이때 fade-in되는 애니메이션 속도는 옵션(nFadeInDuration)을 통해 지정가능하다.<br/>
+								FloatingLayer를 통해 일정시간이 지나면 fade-out된다. 이때 fade-out되는 애니메이션 속도는 옵션(nFadeOutDuration)을 통해 지정가능하다.<br/>
+									<font style="color:#e11b10;">position:fixed 속성이 사용가능한 기기에서는 position:fixed로 동작하며, FloatingLayer가 사라지지않고, 고정된 상태에서 스크롤된다.<br/>
+									nFadeInDuration, nFadeOutDuration 옵션 사용은 불가능하다.</font></li>
+							<li>nTimeout 옵션을 지정하여 레이어가 show된 이후 자동 사라지게 할수 있다. 경과시간은 show가 실행되어, slide가 완료된 시간 이후부터, 또는 스크롤이 된 이후 부터 재측정된다.</li>
+							</ul>
+						</div>						
+					</div>	
+					
+					<!-- 주의사항 -->				
+					<h3 class="notice">Notice</h3>
+					<div class="t1">
+						<h4><font style="color:#e11b10;">√</font> 지원 브라우저</h4>
+						<ul class="t2">
+							<li>안드로이드 2.1 이상</li>
+							<li>iOS 3.0 이상</li>
+						</ul>
+						<h4><font style="color:#e11b10;">√</font> 주의사항</h4>
+						<dl>
+							<dt>Android3.1, 갤럭시탭2</dt>
+							<dd><div class="point_box">
+								show할때 silde효과 이후 한번 깜빡이는 이슈가 있다.
+							</div></dd>
+						</dl>
+					</div>
+				
+					<!-- 초기화 방법 -->
+					<h3>Initialization</h3>
+					<div class="t1">
+						<dl>
+							<dt>Javascript</dt>
+							<dd>
+								<textarea class="brush: javascript;">
+									var oComponent = new jindo.m.FloatingLayer("elLayerId", {
+										 bActivateOnload : true,
+										 sPosition : "bottom",
+										 sDirection : "up",
+										 nSlideDuration : 500,
+										 sSlideTimingFunction : "ease-in-out",
+										 nFadeInDuration : 0,
+										 sFadeInTimingFunction : "ease-in-out", 
+										 nFadeOutDuration : 0,
+										 sFadeOutTimingFunction : "ease-in-out",
+										 nTimeout : -1
+									});
+									oComponent.show();
+								</textarea>
+								<div class="t2">
+								<ul>
+									<li>첫번째 parameter는 Layer로써, 문자형태의 id또는 HTML Element객체를 받을수 있음</li>
+									<li>두번째 parameter는 option으로 써, 아래 표 참조</li>
+								</ul>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					
+					<!-- 초기화 옵션 -->
+					<h3>Option</h3>
+					<div class="t1">
+						<table class="option" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Default</th>
+							</tr>
+							<tr>
+								<td class="name">sPosition</td>
+								<td>FloatingLayer 컴포넌트가 화면에 보여질때의 위치 옵셥. top일 경우, 상단 중앙에 위치하고 , center일 경우 화면 중앙, bottom일 경우 화면 하단 중앙에 위치한다.</td>
+								<td>"bottom"</td>
+							</tr>
+							<tr>
+								<td class="name">sDirection</td>
+								<td>FloatingLayer 컴포넌트가 화면에 보여질때의 slide되는 위치 옵셥. up,down, left, right가 있다.</td>
+								<td>"up"</td>
+							</tr>						
+							<tr>
+								<td class="name">nSlideDuration</td>
+								<td>FloatingLayer 컴포넌트가 화면에 완전히 보여지는 시간 (단위 ms)</td>
+								<td>500</td>
+							</tr>						
+							<tr>
+								<td class="name">sSlideTimingFunction</td>
+								<td>Slide시 애니메이션 효과
+									<ul>
+										<li>ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</li>
+										<li>linear : 등속효과</li>
+										<li>ease-in : 속도가 점점 빨라지는 가속 효과</li>
+										<li>ease-out : 속도가 천천히 줄어드는 감속효과</li>
+										<li>ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</li>
+									</ul>
+								</td>
+								<td>"ease-in-out"</td>
+							</tr>						
+							<tr>
+								<td class="name">nFadeInDuration</td>
+								<td>FloatingLayer 컴포넌트가 스크롤될때 사라졌다 fadein되는 시간 (단위 ms)<br/>
+								    <font style="color:#e11b10;">position:fixed 속성이 사용가능한 기기에서는 position:fixed로 동작하기 때문에 옵션 사용 불가</font>
+								</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">sFadeInTimingFunction</td>
+								<td>Fade in시 애니메이션 효과
+									<ul>
+										<li>ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</li>
+										<li>linear : 등속효과</li>
+										<li>ease-in : 속도가 점점 빨라지는 가속 효과</li>
+										<li>ease-out : 속도가 천천히 줄어드는 감속효과</li>
+										<li>ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</li>
+									</ul><br/>
+									<font style="color:#e11b10;">position:fixed 속성이 사용가능한 기기에서는 position:fixed로 동작하기 때문에 옵션 사용 불가</font>
+								</td>
+								<td>"ease-in-out"</td>
+							</tr>						
+							<tr>
+								<td class="name">nFadeOutDuration</td>
+								<td>FloatingLayer 컴포넌트가 hide될 때 fadeout되는 시간 (단위 ms)<br/>
+									<font style="color:#e11b10;">position:fixed 속성이 사용가능한 기기에서는 position:fixed로 동작하기 때문에 옵션 사용 불가</font></td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td class="name">sFadeOutTimingFunction</td>
+								<td>Fade out시 애니메이션 효과
+									<ul>
+										<li>ease : 속도가 급가속되다가 급감속되는 효과 (거의 끝에서 급감속됨)</li>
+										<li>linear : 등속효과</li>
+										<li>ease-in : 속도가 점점 빨라지는 가속 효과</li>
+										<li>ease-out : 속도가 천천히 줄어드는 감속효과</li>
+										<li>ease-in-out : 속도가 천천히 가속되다가 천천히 감속되는 효과 (가속과 감속이 부드럽게 전환됨)</li>
+									</ul><br/>
+									<font style="color:#e11b10;">position:fixed 속성이 사용가능한 기기에서는 position:fixed로 동작하기 때문에 옵션 사용 불가</font>
+								</td>
+								<td>"ease-in-out"</td>
+							</tr>						
+							<tr>
+								<td class="name">nTimeout</td>
+								<td>FloatingLayer 컴포넌트가 nTimeout시간 이후 사라지는 시간 (단위 ms), -1로 설정될 경우, 자동 숨기는 기능은 제공하지 않는다.</td>
+								<td>-1</td>
+							</tr>
+							<tr>
+								<td class="name">bActivateOnload</td>
+								<td>FloatingLayer 컴포넌트가 로딩 될때 활성화 시킬지 여부를 결정한다. 
+				false로 설정하는 경우에는 FloatingLayer.activate()를 호출하여 따로 활성화 시켜야 한다.</td>
+								<td>true</td>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- 커스텀 이벤트 -->
+					<h3>Custom Event</h3>
+					<div class="t1">
+						<table class="customevent" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>Name</th>
+								<th>Desc</th>
+								<th>Custom Event Object Properties</th>
+							</tr>
+							<tr class="title">
+								<td class="name">beforeShow</td>
+								<td>레이어가 보여기지 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>welLayer (jindo.$Element) : Layer</li>
+										<li>stop (Function) : show를 중지한다. beforeShow이후 커스텀 이벤트(show)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeShow", function(oCustomEvent) {
+										// oCustomEvent.welLayer;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(show)가 발생하지 않고, 현재 show작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">show</td>
+								<td>레이어가 보여진 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>welLayer (jindo.$Element) : Layer</li>
+										<li>stop (Function) : stop를 호출하여 영향 받는 것이 없음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("show", function(oCustomEvent) {
+										// oCustomEvent.welLayer;
+									});
+									</textarea>
+								</td>
+							</tr>
+							
+							<tr class="title">
+								<td class="name">beforeHide</td>
+								<td>레이어가 사라지기 전에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>welLayer (jindo.$Element) : Layer</li>
+										<li>stop (Function) : Hide를 중지한다. beforeHide이후 커스텀 이벤트(hide)가 발생하지 않는다.</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("beforeHide", function(oCustomEvent) {
+										// oCustomEvent.welLayer;
+										// oCustomEvent.stop()를 호출 하면 이후, 커스텀 이벤트(hide)가 발생하지 않고, 현재 hide작업도 중지됨
+									});
+									</textarea>
+								</td>
+							</tr>
+							<tr class="title">
+								<td class="name">hide</td>
+								<td>레이어가 사라진 후에 발생</td>
+								<td>
+									<ul>
+										<li>sType (String) : 커스텀 이벤트명</li>
+										<li>welLayer (jindo.$Element) : Layer</li>
+										<li>stop (Function) : stop를 호출하여 영향 받는 것이 없음</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="desc">
+								<td>&nbsp;</td>
+								<td colspan="2">
+									커스텀이벤트 핸들링 예제
+									<textarea class="brush: javascript;">
+									oComponent.attach("hide", function(oCustomEvent) {
+										// oCustomEvent.welLayer;
+									});
+									</textarea>
+								</td>
+							</tr>			
+						</table>
+					</div>
+					
+					<!-- Method -->
+					{+include("method.html")+}
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href="#" class="nhn">NHN Corp.</a> MobileAjax Team All Rights Reserved.
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

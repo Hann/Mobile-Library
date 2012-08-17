@@ -1,0 +1,90 @@
+ mixin generateTable(two_dimension_array)
+  table.table.table-bordered
+    tbody
+      for i_two in two_dimension_array
+        tr
+          - var array_len = 100 / i_two.length
+          for i_one in i_two
+            td(id = '_#{i_one}', style = 'width : #{array_len}%') #{i_one}
+
+
+div#page1(data-role="page")
+  div(data-role="header", data-theme = "d", data-position="fixed")
+    h1 #{title}
+    div(data-role="navbar",data-iconpos="top")
+      ul
+        li
+          a(href="#",data-theme="",data-icon="",class="ui-btn-active") 2-1열
+        li
+          a(href="/lib22",data-theme="",data-icon="") 2-2열
+        li
+          a(href="/lib23",data-theme="",data-icon="") 2-3열
+        li
+          a(href="/lib46",data-theme="",data-icon="") 4-6열
+        li
+          a(href="/lib47",data-theme="",data-icon="") 4-7열
+  div(data-role="content")
+    - var table_no_array = [['1','2','3','4','5'], ['10','9','8','7','6']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['11','12','13','14','15'], ['20','19','18','17','16']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['21','22','23','24','25'], ['30','29','28','27','26']]
+     mixin generateTable(table_no_array)
+    - var table_no_array = [['31','32','33','34','35'], ['40','39','38','37','36']]
+    mixin generateTable(table_no_array)
+  div(data-theme="d",data-role="footer")
+    h3 @hannJS
+
+div#page2(data-role="page")
+  div(data-role="header", data-theme ="d",data-position="fixed")
+    h1 #{title}
+    div(data-role="navbar",data-iconpos="top")
+      ul
+        li
+          a(href="#",data-theme="",data-icon="",class="ui-btn-active") 2-1열
+        li
+          a(href="#",data-theme="",data-icon="") 2-2열
+        li
+          a(href="#",data-theme="",data-icon="") 2-3열
+        li
+          a(href="#",data-theme="",data-icon="") 4-6열
+        li
+          a(href="#",data-theme="",data-icon="") 4-7열
+  div(data-role="content")
+    - var table_no_array = [['41','42','43','44','45','46','47','48'], ['56','55','54','53','52','51','50','49']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['57','58','59','60','61','62','63','64'], ['72','71','70','69','68','67','66','65']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['73','74','75','76','77','78','79','80'], ['88','87','86','85','84','83','82','81']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['89','90','91','92','','','',''], ['96','95','94','93','','','','']]
+    mixin generateTable(table_no_array)
+  div(data-theme="d",data-role="footer")
+    h3 @hannJS
+
+div#page3(data-role="page")
+  div(data-role="header", data-theme ="d",data-position="fixed")
+    h1 #{title}
+    div(data-role="navbar",data-iconpos="top")
+      ul
+        li
+          a(href="#",data-theme="",data-icon="",class="ui-btn-active") 2-1열
+        li
+          a(href="#",data-theme="",data-icon="") 2-2열
+        li
+          a(href="#",data-theme="",data-icon="") 2-3열
+        li
+          a(href="#",data-theme="",data-icon="") 4-6열
+        li
+          a(href="#",data-theme="",data-icon="") 4-7열
+  div(data-role="content")
+    - var table_no_array = [['97','98','99','100','101','102','103'], ['104','105','106','107','108','109','110']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['117','116','115','114','113','112','111'], ['118','119','120','121','122','123','124']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['131','130','129','128','127','126','125'], ['132','133','134','135','136','167','138']]
+    mixin generateTable(table_no_array)
+    - var table_no_array = [['145','144','143','142','141','140','139'], ['146','147','148','149','150','151','152']]
+    mixin generateTable(table_no_array)
+  div(data-theme="d",data-role="footer")
+    h3 @hannJS

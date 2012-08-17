@@ -1,0 +1,174 @@
+{+include("header.html")+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo</title>
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../css/w.css" />
+
+
+<style>
+.slider-wrapper{border-radius:0.5em 0.5em;float:left;position:relative;top:.8em;width:293px;height:0.8em;margin-right:15px;border:1px solid #AAA;background:#EBEBEC;text-align:left}
+.slider-wrapper .slider-range{border-radius:0.5em 0.5em;display:block;position:absolute;top:0;left:0;z-index:1;height:100%;border:0 none;background:#999;font-size:.7em}
+.slider-wrapper .slider-thumb{border-radius:0.5em 0.5em;position:absolute;top:-.5em;z-index:2;width:1.6em;height:1.6em;margin-left:-.8em;border:1px solid #BABABA;background:#F1F1F1;cursor:pointer}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo" style="position:relative;">
+		<div style="height:50px; margin-left:20px;"> 
+			<div class="slider-wrapper" id='slider'  style="width:150px;">
+				<!-- [D] 슬라이더 영역의 위치와 색상 인라인으로 변경 가능 -->
+				<div class="slider-range" style="width:0%;background:#85BAE4;"></div>
+				<div id="a1" class="u_sbar_hdle slider-thumb" style="left: 0%;"></div>
+			</div>
+			
+			<div style="display:inline-block;margin-top:10px;">
+				현재 값: <input type="text" style="width:50px;" id='txt1' value="0" disabled/>
+			</div>
+		</div>
+		
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			minValue <input type="text" id="nMin" class="op_w40" value="0">
+			maxValue <input type="text" id="nMax" class="op_w40" value="400">
+			<button type="button" id="apply" class="btn">적용</button><br>
+			
+			<input type="text" id="nValue" class="op_w40" ><button type="button" id="setValue" style="margin-left:5px;"class="btn">setValue</button>
+						
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.slider-wrapper{border-radius:0.5em 0.5em;float:left;position:relative;top:.8em;width:293px;height:0.8em;margin-right:15px;border:1px solid #AAA;background:#EBEBEC;text-align:left}
+	.slider-wrapper .slider-range{border-radius:0.5em 0.5em;display:block;position:absolute;top:0;left:0;z-index:1;height:100%;border:0 none;background:#999;font-size:.7em}
+	.slider-wrapper .slider-thumb{border-radius:0.5em 0.5em;position:absolute;top:-.5em;z-index:2;width:1.6em;height:1.6em;margin-left:-.8em;border:1px solid #BABABA;background:#F1F1F1;cursor:pointer}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div class="slider-wrapper" id='slider'  style="width:150px;">
+			<div class="slider-range" style="width:0%;background:#85BAE4;"></div>
+			<div id="a1" class="slider-thumb" style="left: 0%;"></div>
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oSlider = new jindo.m.Slider('slider',{
+		 nMinValue : 0, 
+		 nMaxValue : 400,
+		 nDefaultValue : 200
+	}).attach({
+		'beforeChange' : function(oCustomEvt){
+			//반올림하여 정수로 값을 설정할때
+			var nPos = Math.round(oCustomEvt.nValue);
+			oCustomEvt.nAdjustValue = nPos;
+		}
+	});	
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Slider.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oSlider = new jindo.m.Slider('slider',{
+		 nMinValue : 0, 
+		 nMaxValue : 400,
+		 nDefaultValue : 400
+	});
+	
+	jindo.$Element('txt1').text(oSlider.getValue());
+	
+	oSlider.attach({
+		'beforeChange' : function(oCustomEvt){
+			var nBefore = oCustomEvt.nValue;
+			var nPos = oCustomEvt.nValue.toFixed(2);
+			oCustomEvt.nAdjustValue = nPos;
+			var sText = oCustomEvt.sType + " → 조정전 값 : "+  nBefore + ' , 조정후 :' +nPos;
+			addConsole(sText);
+		},
+		'change' : function(oCustomEvt){			
+			jindo.$Element('txt1').text(oCustomEvt.nAdjustValue);
+			var sText = oCustomEvt.sType + " → 조정후 값 : "+  oCustomEvt.nAdjustValue;
+			addConsole(sText);
+		}
+	});
+	
+	//적용버튼 클릭시
+	jindo.$Fn(function(evt){
+		evt.stop();
+		
+		oSlider.option('nMinValue', jindo.$('nMin').value);
+		oSlider.option('nMaxValue', jindo.$('nMax').value);
+		
+		oSlider.setValue(jindo.$('nMax').value);
+		
+	},this).attach(jindo.$('apply'),'click');
+	
+	//setValue 적용 버튼 
+	jindo.$Fn(function(evt){
+		evt.stop();
+		
+		var nValue = jindo.$('nValue').value * 1;
+		oSlider.setValue(nValue);
+		
+	},this).attach(jindo.$('setValue'),'click');	
+
+	
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

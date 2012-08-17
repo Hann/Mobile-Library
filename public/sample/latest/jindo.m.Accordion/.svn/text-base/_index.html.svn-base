@@ -1,0 +1,27 @@
+{+include("index_header.html")+}
+
+<div id="ct">
+    <h2>{=COMPONENT}</h2>
+    <div class="info">
+        <p>제목탭과 내용탭이 쌍으로 펼쳐지고 접혀지는 컴포넌트</p>
+    </div>
+
+    <div class="shdo">
+        <div class="cpt">
+            <span class="lft"></span>
+            <h3>Sample</h3>
+            <span class="rgt"></span>
+        </div>
+
+        <ul class="lst">
+        <li><a href="default.html">기본예제</a></li>
+        <li><a href="setDefaultIndex.html">디폴트블럭 설정옵션 사용예제</a></li>
+        <li><a href="setToggle.html">Toggle옵션 사용예제</a></li>
+        <li><a href="effect.html">Effect옵션 사용예제</a></li>
+        <li><a href="customEvent.html">customEvent 사용예제</a></li>
+        <li><a href="horizontal.html">가로방향옵션 사용예제</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

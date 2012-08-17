@@ -1,0 +1,154 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.tc-base {
+	margin:10px 20px;
+}
+
+.tc-tab-cont{display:table;width:100%;height:30px;padding-top:5px;background:#5dd668 url(../im/u_bg.png) repeat-x 0 -72px;text-align:center}
+.tc-tab{display:table-cell;vertical-align:top}
+.tc-selected .tc-taba{z-index:10;background:#f4f5f5;background:url(../im/bg_tab.gif) no-repeat 0 0,url(../im/bg_tab.gif) no-repeat 100% -30px,#f4f5f5 url(../im/bg_tab.gif) repeat-x 0 -60px;color:#000;line-height:30px}
+
+.tc-taba{display:block;position:relative;height:30px;padding:0 .4em;color:#fff;line-height:28px}
+.tc-taba:after{display:block;position:absolute;top:6px;left:-2px;width:1px;height:14px;border-left:1px solid #0b7518;background:#12cf2a;content:''}
+
+.tc-tab:first-child .tc-taba:after,.tc-selected .tc-taba:after{display:none}
+.tc-tab:first-child .tc-taba{margin-left:2px}
+.tc-tab:last-child .tc-taba{margin-right:2px}
+.tc-tab{*float:left}
+
+.tc-panel-cont {background:#4BA12E; padding:0 1px 1px 1px;}
+.tc-panel {display:none; padding:10px; background:#F4F5F5; border:#226E04 solid 1px; border-top:none;}
+.tc-selected {display:block}
+/* document */
+.strike {color:#0075C8;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="javascript:void(0)">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm" style="padding:0px;border:0px;">
+			<div id="tabComponent" class="tc-base" style="margin:0px;">			
+				<ul class="tc-tab-cont">
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">뉴스홈</a></li>
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">스포츠</a></li>
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">부동산</a></li>
+				</ul>		
+				<div class="tc-panel-cont">
+					<div class="tc-panel">뉴스홈
+					<br/><br/>오늘의 뉴스 입니다.
+					</div>
+					<div class="tc-panel">스포츠
+					<br/><br/>오늘의 스포츠 경기 결과 입니다.
+					</div>
+					<div class="tc-panel">부동산
+					<br/><br/>오늘의 부동산 시세 입니다.
+					</div>
+				</div>
+			</div> 
+		</div>
+
+		<div class="lm">
+			<strong>* 탭을 구성할 수 있다.</strong><br/><br/>
+			<ul class="lst_type">
+					<li class="sub">
+						<p class="dot">초기 선택되는 탭은 <strong class="strike"> nDefaultIndex</strong> 옵션을 통해 조절 할수 있다.</p>
+					</li>					
+			</ul>
+	
+			<p style="color:red;font-size:.9em;margin-left:5px;">&lt;다양한 모양의 탭을 구성할 수 있도록 다음과 같은 CSS 클래스를 제공한다.&gt;</p>
+			<p class="sub_box">
+			<span class="tab1">[sClassPrefix]base : 탭컴포넌트를 감싸고 있는 최상위 class </span><br/>
+			<span class="tab1">[sClassPrefix]tab-cont : 탭을 감싸고 있는 박스의 class </span><br/>
+			<span class="tab1">[sClassPrefix]tab : 탭 class </span><br/>
+			<span class="tab1">[sClassPrefix]taba : 탭 속의 태그 class </span><br/>
+			<span class="tab1">[sClassPrefix]panel-cont : 패널을 감싸고 있는 박스의 class </span><br/>
+			<span class="tab1">[sClassPrefix]panel : 패널 class </span><br/>
+			<span class="tab1">[sClassPrefix]selected : 선택된 탭 또는 패널 class (disply:block 속성을 추가한다) </span>
+			</p>
+		</div>				
+	</div>
+	<!--// Demo 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.tc-base {}
+	.tc-tab-cont{}
+	.tc-tab{}
+	.tc-taba {}
+	.tc-panel-cont {}
+	.tc-panel {}
+	.tc-selected {display:block}
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<div id="tabComponent" class="tc-base">		
+		<ul class="tc-tab-cont">
+			<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">뉴스홈</a></li>
+			<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">스포츠</a></li>
+			<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">부동산</a></li>
+		</ul>		
+		<div class="tc-panel-cont">
+			<div class="tc-panel">뉴스홈
+			<br/><br/>오늘의 뉴스 입니다.
+			</div>
+			<div class="tc-panel">스포츠
+			<br/><br/>오늘의 스포츠 경기 결과 입니다.
+			</div>
+			<div class="tc-panel">부동산
+			<br/><br/>오늘의 부동산 시세 입니다.
+			</div>
+		</div>
+	</div> 
+	<!--includeHtmlEnd -->
+	
+	/*includeScript*/
+	var oTab = new jindo.m.Tab("tabComponent");
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oTab = new jindo.m.Tab("tabComponent");
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

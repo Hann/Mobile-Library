@@ -1,0 +1,126 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			일반 Text 쓰기<br><br>
+			
+			<p>&lt;p&gt;안에 Text 쓰기</p><br>
+			
+			<p class="dot">&lt;p class="dot"&gt;으로 dot가 있는 Text 쓰기</p><br>
+			
+			<p class="sub_box">
+				&lt;p class="sub_box"&gt;안에 Text 쓰기<br>
+				<span class="tab1">&lt;span class="tab1"&gt;으로 Text 들여쓰기</span><br>
+				<span class="tab2">&lt;span class="tab2"&gt;으로 Text 들여쓰기</span><br>
+				<span class="tab3">&lt;span class="tab3"&gt;으로 Text 들여쓰기</span><br>
+			</p><br>
+			
+			&lt;ul class="lst_type"&gt;으로 목록 만들기
+			<ul class="lst_type">
+			<li>목록1</li>
+			<li class="sub">목록1 설명</li>
+			<li>목록2</li>
+			<li class="sub">목록2 설명</li>
+			</ul>
+			
+			&lt;span class="keyword"&gt;으로 Text <span class="keyword">강조</span>하기
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			width 20짜리 Input <input type="text" class="op_w20" value="0"><br>
+			width 30짜리 Input <input type="text" class="op_w30" value="0"><br>
+			width 40짜리 Input <input type="text" class="op_w40" value="0"><br>
+			width 50짜리 Input <input type="text" class="op_w50" value="0"><br>
+			width 100짜리 Input <input type="text" class="op_w100" value="0"><br>
+			버튼 <button type="button" id="fadeln" class="btn">fadeln</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	컴포넌트 실행에 필요한 script만 작성. 없으면 비워두세요.
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	컴포넌트 실행에 필요한 script만 작성. 없으면 비워두세요.
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	컴포넌트 실행에 필요한 script만 작성. 없으면 비워두세요.
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Dialog.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+/**
+ * @todo : 샘플실행 스크립트 작성
+ */
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

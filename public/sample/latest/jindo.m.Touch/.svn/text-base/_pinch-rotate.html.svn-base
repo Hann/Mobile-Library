@@ -1,0 +1,219 @@
+{+include("header.html")+}
+<style>
+/* 개별 Sample 관련 CSS */
+body{-webkit-user-select:none;}
+.check{margin-top: -2px;vertical-align:middle;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">jindo.m.Touch</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+		        <div class="_view_code sc_info" style="display:none;">
+		       		<div>
+						<h2 class="h2_code">CSS</h2>
+						<!-- 마크업 구조 -->
+						<textarea class="brush: css;">{=CSS}</textarea>	
+					</div>
+					<div>
+						<h2 class="h2_code">HTML</h2>
+						<textarea class="brush: xml;">{=HTML}</textarea>
+					</div>
+					<div>
+						<h2 class="h2_code">SCRIPT</h2>
+						<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+					</div>
+		        </div>
+		 </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div id="layer1" style="margin:10px 0;height:150px;background-color:#ff7f5c;text-align:center;font-size:.85em;">
+			<p style="padding-top:10px;"> 영역 내에서  <span style="color:white;font-weight:bold;">멀티터치로 pinch 와 rotate</span> 작업을 진행할 수 있습니다. </p>
+			<p style="padding-top:5px;">이 영역내에서는 스크롤이 되지 않습니다.</p>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			rotate 를  판단하는 최소 angle  <input type="text" id="rotate" class="op_w50" value="5"><br>
+			pinch를  판단하는 최소 Scale  <input type="text" id="nScale" class="op_w50" value="0.1">&nbsp;&nbsp;<button type="button" id="apply" class="btn">적용</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer1"></div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oTouch = new jindo.m.Touch('layer1',{
+		nMoveThreshold : 0 	
+	});
+	oTouch.attach({
+		'touchMove' : function(oCustomEvt){
+			oCustomEvt.oEvent.stop();
+			
+			if(oCustomEvt.sMoveType && ((oCustomEvt.sMoveType.indexOf('pinch') > -1) || (oCustomEvt.sMoveType.indexOf('rotate') > -1) ) ) {
+				resizeLayer(oCustomEvt.nScale , oCustomEvt.nRotation);
+			}		
+			
+		},		
+		'pinch' : function(oCustomEvt){
+			// touchend 이후에  pinch 작업 일 경우
+		},
+		'rotate' : function(oCustomEvt){
+			// touchend 이후에  rotate 작업 일 경우
+		}
+	});
+	
+	
+	function resizeLayer(nScale, nRotate){
+		var sNewScale = (typeof nScale === 'undefined')? null: nScale;
+		var sNewRotate = (typeof nRotate === 'undefined')? null: nRotate;
+			
+		var transform = jindo.$('layer1').style.webkitTransform;
+		
+		var aScale = transform.match(/scale\((.*)\)/);
+		var aRotate = transform.match(/rotate\((.*)deg\)/);
+		
+		if(sNewScale === null){
+			if(aScale && aScale.length > 1){
+				sNewScale = parseFloat(aScale[1]);
+			}
+		}
+		
+		if(sNewRotate  === null ){
+			if(aRotate&& aRotate.length > 1){
+				sNewRotate = parseFloat(aRotate[1]);
+			}
+		}
+		
+		var sNewTransfrom = '';
+		
+		if(sNewScale !== null){
+			sNewTransfrom +="scale(" +sNewScale + ")"; 
+		}
+		
+		if(sNewRotate!== null){
+			sNewTransfrom +=" rotate("+ sNewRotate+"deg)";
+		}
+		
+		jindo.$('layer1').style.webkitTransform = sNewTransfrom;
+		
+	}
+
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	
+var elBody = document.body;
+var oTouch = new jindo.m.Touch('layer1',{
+	nMoveThreshold : 0 	
+});
+
+function resizeLayer(nScale, nRotate){
+	var sNewScale = (typeof nScale === 'undefined')? null: nScale;
+	var sNewRotate = (typeof nRotate === 'undefined')? null: nRotate;
+		
+	var transform = jindo.$('layer1').style.webkitTransform;
+	
+	var aScale = transform.match(/scale\((.*)\)/);
+	var aRotate = transform.match(/rotate\((.*)deg\)/);
+	
+	if(sNewScale === null){
+		if(aScale && aScale.length > 1){
+			sNewScale = parseFloat(aScale[1]);
+		}
+	}
+	
+	if(sNewRotate  === null ){
+		if(aRotate&& aRotate.length > 1){
+			sNewRotate = parseFloat(aRotate[1]);
+		}
+	}
+	
+	var sNewTransfrom = '';
+	
+	if(sNewScale !== null){
+		sNewTransfrom +="scale(" +sNewScale + ")"; 
+	}
+	
+	if(sNewRotate!== null){
+		sNewTransfrom +=" rotate("+ sNewRotate+"deg)";
+	}
+	
+	jindo.$('layer1').style.webkitTransform = sNewTransfrom;
+	
+}
+
+oTouch.attach({		
+	'touchMove' : function(oCustomEvt){
+		oCustomEvt.oEvent.stop();
+		
+		if(oCustomEvt.sMoveType && ((oCustomEvt.sMoveType.indexOf('pinch') > -1) || (oCustomEvt.sMoveType.indexOf('rotate') > -1) ) ) {
+			//console.log(oCustomEvt.nScale + " : " +oCustomEvt.nRotation);
+			resizeLayer(oCustomEvt.nScale , oCustomEvt.nRotation);
+			addConsole('[touchMove]: '+ oCustomEvt.sMoveType + " →  "+ oCustomEvt.nScale + " , "+ oCustomEvt.nRotation);
+		}		
+		
+	},		
+	'pinch' : function(oCustomEvt){
+		if (oCustomEvt.sMoveType && (oCustomEvt.sMoveType.indexOf('pinch') > -1)) {
+			addConsole('pinch → ' + oCustomEvt.nScale);
+		}
+	},
+	'rotate' : function(oCustomEvt){
+		addConsole('rotate → ' + oCustomEvt.nRotation);
+	}
+});
+//apply button	
+function apply(){
+	oTouch.option('nPinchThreshold', parseFloat(jindo.$('nScale').value, 10));
+	oTouch.option('nRotateThreshold', parseFloat(jindo.$('rotate').value, 10));
+	
+	
+	addConsole('적용 되었습니다');
+}
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	apply();
+}, this).attach(jindo.$('apply'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

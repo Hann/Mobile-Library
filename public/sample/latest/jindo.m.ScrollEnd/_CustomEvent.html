@@ -1,0 +1,96 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.tarea{width:100%;height:10000px;border:1px solid #acacac;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <div title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->	
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<!--includeHtmlEnd -->		
+
+	/*includeScript*/
+		var oScrollEnd = new jindo.m.ScrollEnd()
+		.attach("scrollEnd", function(we) {
+			addConsole(we.sType + " → " + "스크롤 완료시 호출됨 (nTop : " + we.nTop + ", nLeft : " + we.nLeft + ")");
+		});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.ScrollEnd.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	/** 
+	 * AddLog Overriding 
+	 * 왜? 안드로이드 2.1에서는 textarea에서 이벤트를 먹어버리는 오류가 있어서 수정함
+	 */
+	window.addConsole = function(s){
+		welConsole = jindo.$Element('txtConsole');
+		var sText = welConsole.html();
+		sText = sText + "<br/>" + "[" + window.__message_index_value__++ + "] " + s;
+		
+		welConsole.html(sText);
+		welConsole.$value().scrollTop = welConsole.$value().scrollHeight;
+	};
+
+
+	var oScrollEnd = new jindo.m.ScrollEnd()
+		.attach("scrollEnd", function(we) {
+			addConsole(we.sType + " → " + "스크롤 완료시 호출됨 (nTop : " + we.nTop + ", nLeft : " + we.nLeft + ")");
+		});
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

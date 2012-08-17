@@ -1,0 +1,239 @@
+{+include("header.html")+}
+
+<style>
+.sc_mr {
+	position: relative;
+	height: 52px;
+	margin-bottom: 12px;
+	background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -222px;
+	text-align: center;
+	margin-top: -1px;
+}
+.bt9 {
+	display: inline-block;
+	position: relative;
+	left: 1px;
+	padding-bottom: 7px;
+	background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -327px;
+	cursor: pointer;
+}
+.bt9 a {
+	display: inline-block;
+	width: 198px;
+	height: 30px;
+	padding-top: 12px;
+	border: 1px solid #CCC;
+	border-top: 0;
+	background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -281px;
+	font-size: 14px;
+	color: black;
+}
+.inr_mr2 {
+	display: block;
+	height: 16px;
+	padding-left: 84px;
+	background: url(http://imgnews.naver.net/image/news/m/2011/renew/ico_bg.png) 60px -126px no-repeat;
+	color: #333;
+	letter-spacing: -1px;
+	text-align: left;
+}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="sc_mr" id="contentMore">
+		    <span class="bt9">
+		        <a class="more_button"><div class="inr_mr2">더보기</div></a>
+		    </span>
+		</div>
+		<div class="lm">
+			<p>T자형 더보기 샘플</p> 
+			<p>더보기할 아이템이 없으면 더보기 영역을 없어집니다</p>
+		</div>	
+			
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			더보기 할 총 아이템 개수 (nItemPerPage) <input type="text" class="op_w50 _optionTool"  value="10"  name="nItemPerPage"> <br>
+			전체 아이템 개수 (nTotalItem) <input type="text" class="op_w50 _optionTool"  value="68" name="nTotalItem"><br>
+			더보기 최대 개수(nMaxItem) <input type="text" class="op_w50 _optionTool"  value="68" name="nMaxItem"><br>
+			현재 페이지 (nPage) <input type="text" class="op_w50 _optionTool"value="1" name="nPage"><br>
+			
+			<button type="button"  id="apply"  class="btn">적용</button>
+			
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.sc_mr {
+		position: relative;
+		height: 52px;
+		margin-bottom: 12px;
+		background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -222px;
+		text-align: center;
+		margin-top: -1px;
+	}
+	.bt9 {
+		display: inline-block;
+		position: relative;
+		left: 1px;
+		padding-bottom: 7px;
+		background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -327px;
+		cursor: pointer;
+	}
+	.bt9 a {
+		display: inline-block;
+		width: 198px;
+		height: 30px;
+		padding-top: 12px;
+		border: 1px solid #CCC;
+		border-top: 0;
+		background: url(http://imgnews.naver.net/image/news/m/2011/renew/bt.png) repeat-x 0 -281px;
+		font-size: 14px;
+		color: black;
+	}
+	.inr_mr2 {
+		display: block;
+		height: 16px;
+		padding-left: 84px;
+		background: url(http://imgnews.naver.net/image/news/m/2011/renew/ico_bg.png) 60px -126px no-repeat;
+		color: #333;
+		letter-spacing: -1px;
+		text-align: left;
+	}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+		<div class="sc_mr" id="contentMore">
+		    <span class="bt9">
+		        <a class="more_button"><div class="inr_mr2">더보기</div></a>
+		    </span>
+		</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+		nTotalItem : 68, //실제 아이템 개수
+		nShowMaxItem : 68, //최대 더보기 하여 보여줄 개수
+		nItemPerPage : 10,
+		htAjax : null	
+	});
+	
+	oMore.attach({
+		'more' : function(oCustomEvt){
+			/** more 버튼 클릭시에 발생 **/
+		}
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.MoreContentButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oMore = new jindo.m.MoreContentButton(jindo.$('contentMore'),{
+	nTotalItem : 68, //실제 아이템 개수
+	nShowMaxItem : 68, //최대 더보기 하여 보여줄 개수
+	nItemPerPage : 10,
+	htAjax : null	
+});
+
+oMore.attach({
+	'more' : function(oCustomEvt){
+		var sText = oCustomEvt.sType + " → " + oCustomEvt.nPage + " 페이지  /  시작인덱스 : " + oCustomEvt.nStartIndex + ", 끝인덱스 : " +oCustomEvt.nEndIndex;
+		addConsole(sText);		
+	}
+});
+
+function setOption(wel) {
+	var sVal = '';
+	
+	var aOption = jindo.$$('._optionTool');
+	
+	jindo.$A(aOption).forEach(function(el, index, array){
+		var sVal = el.value;		
+		if(!sVal.match(/[^0-9]/)){
+			sVal = parseInt(sVal, 10);
+		}
+		
+		var wel = jindo.$Element(el);
+		switch (wel.attr('name')) {
+				case 'nItemPerPage' :
+					oMore.setItemPerPage(sVal);
+					break;
+				case 'nTotalItem' :								
+					oMore.setTotalItem(sVal);
+					break;
+					
+				case 'nMaxItem' :
+					oMore.setShowMaxItem(sVal);
+					break;
+				case 'nPage':
+					oMore.movePageTo(sVal);
+					break;
+		}			
+	});		
+}
+
+var wfnTool = jindo.$Fn(function (we) {
+	setOption(jindo.$Element(we.element));
+	addConsole("적용되었습니다.");	
+});
+
+wfnTool.attach(jindo.$('apply'), "click");
+
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

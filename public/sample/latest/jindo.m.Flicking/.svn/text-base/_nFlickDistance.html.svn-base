@@ -1,0 +1,415 @@
+{+include("header.html")+}
+
+<style>
+#movie_clip {height:200px; overflow:hidden;position:relative;border:2px solid gray; } 
+#movie_clip .flick-container {position:absolute;} 
+#movie_clip .flick-ct {width:100%;float:left;height:200px; text-align:center;}
+
+#movie_clip .flick-ct .inner {background-color:skyblue;height:100%;width:225px;}
+
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">jindo.m.Flicking</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">
+	.[prefix]-view{overflow:hidden;position:relative;}
+	.[prefix]-ct{float:left;}
+	</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">
+	<div id="mflick" class='[prefix]-view'>
+		<div id="content" class="[prefix]-container">
+			<div id="layer1" class="[prefix]-ct"></div>
+			<div id="layer2" class="[prefix]-ct"></div>
+			<div id="layer3" class="[prefix]-ct"></div>
+		</div>
+	</div>
+	</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">
+	var oFlicking = new jindo.m.Flicking('mflick',{
+		nDefaultIndex:2
+	})
+	</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		
+		<div id="movie_clip"> 
+		  <div class="flick-container" id="container"> 
+		    <div class="flick-ct first"> 
+				<div class="inner">
+					1번화면 
+				</div>
+		    </div>
+		    <div class="flick-ct"> 
+				<div class="inner">
+					2번화면 
+				</div>
+		    </div>
+		    <div class="flick-ct" > 
+				<div class="inner">
+					3번화면 
+				</div>
+		    </div>
+			<div class="flick-ct last" > 
+				<div class="inner" >
+					4번화면 
+				</div>
+		    </div>
+		  </div> 
+		 
+		</div> 
+		
+		
+	</div>
+	<!--// Demo 영역 -->
+	<div class="lm">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			nFlickThreshold 옵션을 40으로 설정하여<br> 플리킹할때 양옆 콘텐츠가 보이게 하는 플리킹 예제
+	</div>
+		
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	#movie_clip {height:200px; overflow:hidden;position:relative;border:2px solid gray; } 
+	#movie_clip .flick-container {position:absolute;} 
+	#movie_clip .flick-ct {width:100%;float:left;height:200px; text-align:center;}
+	
+	#movie_clip .flick-ct .inner {background-color:skyblue;height:100%;width:225px;}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="movie_clip"> 
+		  <div class="flick-container" id="container"> 
+		    <div class="flick-ct"> 
+				<div class="inner">
+					1번화면 
+				</div>
+		    </div>
+		    <div class="flick-ct"> 
+				<div class="inner">
+					2번화면 
+				</div>
+		    </div>
+		    <div class="flick-ct" > 
+				<div class="inner">
+					3번화면 
+				</div>
+		    </div>
+			<div class="flick-ct last" > 
+				<div class="inner" >
+					4번화면 
+				</div>
+		    </div>
+		  </div> 
+		 
+		</div> 
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	jindo.m.FlickingManager = jindo.$Class({	
+	$init : function(htOption){
+		this.option({
+			nViewCount : 1, // 플리킹 화면에서 보여지는 컨텐츠 개수
+			sFlickAreaId : 'mFlick', //플리킹 기준 엘리먼트 ID
+			sClassPrefix : 'flick-', // 플리킹 컴포넌트의 CSS클래스 prefix
+			nDefaultIndex : 0, //로드시 화면에 보여지는 플리킹 컨텐츠 인덱스
+			nFlickThreshold : 40, //플리킹 컴포넌트 옵션
+			nDuration : 200, //애니메이션 시간
+			nContentSize : 225, //플리킹되는 이미지 사이즈
+			nPaddingMin : 7 //이미지들간의 최소 패딩 사이즈
+		});
+		
+		this.option(htOption || {});
+		
+		this._initVar();
+		this._resize();
+
+		this._attachEvent();
+		
+	},
+	
+	_initVar : function(){
+		this._oFlick = null;
+		this._nFlickGapSize = 0;
+		
+		this._welBase = jindo.$Element(this.option('sFlickAreaId'));
+				
+		var sClass = '.'+ this.option('sClassPrefix') + 'ct';
+		this._aFlickContent = jindo.$$(sClass, this._welBase.$value());
+		this._elContainer = jindo.$$.getSingle('.'+this.option('sClassPrefix') +'container', this._welBase.$value());
+		
+		this._fnResize = jindo.$Fn(this._resize,this).bind();
+	},
+	
+	/**
+	 * flick-ct의 width를 구하고 padding값들을 계산한다
+	 */
+	setSize : function(){
+		var nCtSize = this.option('nContentSize');
+		var nCnt = this.option('nViewCount');
+		var nW = this._welBase.width() - (nCtSize* this.option('nViewCount'));
+		
+		this._nFlickGapSize = (nCtSize*0.5);
+		var nMin = (nW - (this.option('nPaddingMin')*(nCnt+1)))/2;
+		this._nFlickGapSize = Math.min(nMin, this._nFlickGapSize);
+				
+		var nPaddingLeft = (nW - (this._nFlickGapSize*2))/(nCnt+1);
+		var nPaddingRight = nW - (nPaddingLeft*nCnt)-this._nFlickGapSize;
+		var nContainerW = 0;		
+		
+		for(var i=0,nLen= this._aFlickContent.length;i<nLen;i++){
+			var we = jindo.$Element(this._aFlickContent[i]);
+			if(i === 0){
+				we.css('paddingLeft', nPaddingRight+"px");
+			}else{
+				we.css('paddingLeft', nPaddingLeft+"px");			
+			}
+			if(i == nLen-1){
+				we.css('paddingRight', nPaddingRight+"px")
+			}
+			
+			var nPadding = parseInt(we.css('paddingLeft'),10) + parseInt(we.css('paddingRight'),10);
+			
+			we.width(nPadding+nCtSize);
+			nContainerW += we.width();
+		}
+		
+		jindo.$Element(this._elContainer).width(nContainerW);
+		
+	},
+	
+	/**
+	 * 플리킹 컴포넌트 초기화
+	 */
+	_initFlickComponent : function(){
+		
+		this._oFlick = new jindo.m.Flicking(this._welBase.$value(),{
+			nFlickDistanceOffset : this._nFlickGapSize*-1,
+			bAutoResize: false,
+			bAutoSize : false
+		}).attach({
+			'beforeFlicking' : function(oEvent){
+				//손가락을 떼는 순간 발생합니다. 이쪽에 DOM을 수정하는 코드는 웬만하면 넣지 마세요
+				
+			},
+			'afterFlicking' : function(oEvent){
+				//플리킹 이후에 필요한 부분이 있으면 이쪽에 추가하세요.
+			}
+		});
+		
+	},
+	
+	/**
+	 * 화면사이즈 변화(로테이션 처리)
+	 */
+	_resize : function(){
+		this.setSize();
+		
+		var self = this;
+		setTimeout(function(){
+			if(self._oFlick){
+				//다시 계산하고 
+				self._oFlick.option('nFlickDistance',  self._nFlickGapSize*-1);
+				//플리킹 리프레시!				
+				self._oFlick.refresh();	
+			}else{
+				self._initFlickComponent();
+			}
+			
+			
+		},100);
+		
+	},
+	
+	/**
+	 * @description 
+	 */
+	_attachEvent :function(){	
+		jindo.m.bindRotate(this._fnResize);
+	}	
+	
+}).extend(jindo.Component)
+
+var oFlickManager = new jindo.m.FlickingManager({
+	sFlickAreaId : 'movie_clip',
+	nContentSize : 225
+});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CoreScroll.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Flicking.js" charset="utf-8"></script>
+
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+jindo.m.FlickingManager = jindo.$Class({	
+	$init : function(htOption){
+		this.option({
+			nViewCount : 1, // 플리킹 화면에서 보여지는 컨텐츠 개수
+			sFlickAreaId : 'mFlick', //플리킹 기준 엘리먼트 ID
+			sClassPrefix : 'flick-', // 플리킹 컴포넌트의 CSS클래스 prefix
+			nDefaultIndex : 0, //로드시 화면에 보여지는 플리킹 컨텐츠 인덱스
+			nFlickThreshold : 40, //플리킹 컴포넌트 옵션
+			nDuration : 200, //애니메이션 시간
+			nContentSize : 225, //플리킹되는 이미지 사이즈
+			nPaddingMin : 7 //이미지들간의 최소 패딩 사이즈
+		});
+		
+		this.option(htOption || {});
+		
+		this._initVar();
+		this._resize();
+
+		this._attachEvent();
+		
+	},
+	
+	_initVar : function(){
+		this._oFlick = null;
+		this._nFlickGapSize = 0;
+		
+		this._welBase = jindo.$Element(this.option('sFlickAreaId'));
+				
+		var sClass = '.'+ this.option('sClassPrefix') + 'ct';
+		this._aFlickContent = jindo.$$(sClass, this._welBase.$value());
+		this._elContainer = jindo.$$.getSingle('.'+this.option('sClassPrefix') +'container', this._welBase.$value());
+		
+		this._fnResize = jindo.$Fn(this._resize,this).bind();
+	},
+	
+	/**
+	 * flick-ct의 width를 구하고 padding값들을 계산한다
+	 */
+	setSize : function(){
+		var nCtSize = this.option('nContentSize');
+		var nCnt = this.option('nViewCount');
+		var nW = this._welBase.width() - (nCtSize* this.option('nViewCount'));
+		
+		this._nFlickGapSize = (nCtSize*0.5);
+		var nMin = (nW - (this.option('nPaddingMin')*(nCnt+1)))/2;
+		this._nFlickGapSize = Math.min(nMin, this._nFlickGapSize);
+				
+		var nPaddingLeft = (nW - (this._nFlickGapSize*2))/(nCnt+1);
+		var nPaddingRight = nW - (nPaddingLeft*nCnt)-this._nFlickGapSize;
+		var nContainerW = 0;		
+		
+		for(var i=0,nLen= this._aFlickContent.length;i<nLen;i++){
+			var we = jindo.$Element(this._aFlickContent[i]);
+			if(i === 0){
+				we.css('paddingLeft', nPaddingRight+"px");
+			}else{
+				we.css('paddingLeft', nPaddingLeft+"px");			
+			}
+			if(i == nLen-1){
+				we.css('paddingRight', nPaddingRight+"px")
+			}
+			
+			var nPadding = parseInt(we.css('paddingLeft'),10) + parseInt(we.css('paddingRight'),10);
+			
+			we.width(nPadding+nCtSize);
+			nContainerW += we.width();
+		}
+		
+		jindo.$Element(this._elContainer).width(nContainerW);
+		
+	},
+	
+	/**
+	 * 플리킹 컴포넌트 초기화
+	 */
+	_initFlickComponent : function(){
+		
+		this._oFlick = new jindo.m.Flicking(this._welBase.$value(),{
+			nFlickDistanceOffset : this._nFlickGapSize*-1,
+			bAutoResize: false,
+			bAutoSize : false
+		}).attach({
+			'beforeFlicking' : function(oEvent){
+				//손가락을 떼는 순간 발생합니다. 이쪽에 DOM을 수정하는 코드는 웬만하면 넣지 마세요
+				
+			},
+			'afterFlicking' : function(oEvent){
+				//플리킹 이후에 필요한 부분이 있으면 이쪽에 추가하세요.
+			}
+		});
+		
+	},
+	
+	/**
+	 * 화면사이즈 변화(로테이션 처리)
+	 */
+	_resize : function(){
+		this.setSize();
+		
+		var self = this;
+		setTimeout(function(){
+			if(self._oFlick){
+				//다시 계산하고 
+				self._oFlick.option('nFlickDistance',  self._nFlickGapSize*-1);
+				//플리킹 리프레시!				
+				self._oFlick.refresh();	
+			}else{
+				self._initFlickComponent();
+			}
+			
+			
+		},100);
+		
+	},
+	
+	/**
+	 * @description 
+	 */
+	_attachEvent :function(){	
+		jindo.m.bindRotate(this._fnResize);
+	}	
+	
+}).extend(jindo.Component)
+
+var oFlickManager = new jindo.m.FlickingManager({
+	sFlickAreaId : 'movie_clip',
+	nContentSize : 225
+});
+
+</script>
+<!--// Sample 실행 script 코드 끝-->
+{+include("footer.html")+}

@@ -1,0 +1,248 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.tc-base {
+	margin:10px 20px;
+}
+
+.tc-tab-cont{display:table;width:100%;height:30px;padding-top:5px;background:#5dd668 url(../im/u_bg.png) repeat-x 0 -72px;text-align:center}
+.tc-tab{display:table-cell;vertical-align:top}
+.tc-selected .tc-taba{z-index:10;background:#f4f5f5;background:url(../im/bg_tab.gif) no-repeat 0 0,url(../im/bg_tab.gif) no-repeat 100% -30px,#f4f5f5 url(../im/bg_tab.gif) repeat-x 0 -60px;color:#000;line-height:30px}
+
+.tc-taba{display:block;position:relative;height:30px;padding:0 .4em;color:#fff;line-height:28px}
+.tc-taba:after{display:block;position:absolute;top:6px;left:-2px;width:1px;height:14px;border-left:1px solid #0b7518;background:#12cf2a;content:''}
+
+.tc-tab:first-child .tc-taba:after,.tc-selected .tc-taba:after{display:none}
+.tc-tab:first-child .tc-taba{margin-left:2px}
+.tc-tab:last-child .tc-taba{margin-right:2px}
+.tc-tab{*float:left}
+
+
+.tc-panel-cont {background:#4BA12E; }
+.tc-panel {display:none; padding:10px; background:#F4F5F5; border:#226E04 solid 1px; border-top:none;}
+.tc-selected {display:block}
+
+
+.tc-more-tab{display:table-cell;}
+.tc-more-on {border-bottom:1px solid white;border-bottom:1px solid white;background-color:#fff;line-height:25px}
+.tc-arrow-down {display:inline-block;overflow:hidden;width:7px;height:4px;_margin:15px 0 14px;background:url(http://sstatic.naver.net/search/mobile/i11/ic_csu.png) 0 -434px;vertical-align:middle}
+.tc-arrow-up {display:inline-block;overflow:hidden;width:7px;height:4px;_margin:15px 0 14px; background:url(http://sstatic.naver.net/search/mobile/i11/ic_csu.png) -7px -434px; vertical-align:middle}
+.tc-more-cont {left: -1px; width: 99.9%; padding-right: 1px; border-top: 1px solid #DADEE1; border-left: 1px solid #DADEE1; background: white;}
+.tc-more-li {border-bottom:1px solid #f2f4f5;text-align:left}
+.tc-more-lia {display: block;padding-left: 9px;height: 100%;color: #6B707D;}
+/* document */
+.strike {color:#0075C8;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="javascript:void(0)">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm" style="padding:0px;border:0px;">
+			<div id="tabComponent" class="ct-base" style="margin:0px;">	
+				<ul class="tc-tab-cont">
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">뉴스홈</a></li>
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">스포츠</a></li>
+					<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">부동산</a></li>
+				</ul>		
+				<div class="tc-panel-cont">
+					<div class="tc-panel">뉴스홈
+					<br/><br/>오늘의 뉴스 입니다.
+					<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+					<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+					</div>
+					<div class="tc-panel">스포츠
+					<br/><br/>오늘의 스포츠 경기 결과 입니다.
+					<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+					<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+					</div>
+					<div class="tc-panel">부동산
+					<br/><br/>오늘의 부동산 시세 입니다.
+					<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+					<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	<br/>
+	<br/>
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->	
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.tc-base {}
+	.tc-tab-cont{}
+	.tc-tab{}
+	.tc-taba {}
+	.tc-panel-cont {}
+	.tc-panel {}
+	.tc-selected {display:block}
+
+	.tc-more-tab{display:table-cell;}
+	.tc-more-on {}
+	.tc-arrow-down {}
+	.tc-arrow-up {}
+	.tc-more-cont {}
+	.tc-more-li {}
+	.tc-more-lia {}
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<div id="tabComponent" class="tc-base">
+			<ul class="tc-tab-cont">
+				<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">뉴스홈</a></li>
+				<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">스포츠</a></li>
+				<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">부동산</a></li>
+				<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">증권</a></li>
+				<li class="tc-tab"><a href="javascript:void(0)" class="tc-taba">한자사전</a></li>
+			</ul>		
+			<div class="tc-panel-cont">
+				<div class="tc-panel">뉴스홈
+				<br/><br/>오늘의 뉴스 입니다.
+				<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+				<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+				</div>
+				<div class="tc-panel">스포츠
+				<br/><br/>오늘의 스포츠 경기 결과 입니다.
+				<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+				<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+				</div>
+				<div class="tc-panel">부동산
+				<br/><br/>오늘의 부동산 시세 입니다.
+				<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+				<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+				</div>
+				<div class="tc-panel">증권
+				<br/><br/>오늘의 증권 시세 입니다.
+				<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+				<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+				</div>
+				<div class="tc-panel">한자사전
+				<br/><br/>오늘의 한자사전 입니다.
+				<br/><br/>탭을 선택하기 전에 <strong class="strike">beforeSelect</strong> 사용자 이벤트가 발생합니다.
+				<br/>탭을 선택한 후에 <strong class="strike">select</strong> 사용자 이벤트가 발생합니다.
+				</div>
+			</div>
+		</div> 
+	<!--includeHtmlEnd -->
+	
+	/*includeScript*/
+	var oTab = new jindo.m.Tab("tabComponent", {
+		nCountOnList : 2,
+		nPanelDuration : 500,
+		nHeight : 120,
+		nWidth : 0
+	}).attach({
+		"beforeSelect" :  function(we) {
+			addConsole(we.sType + " → " + "select 선택하기 전에 호출 (index : " + we.nIndex + ")");
+		},
+		"select" : function(we) {
+			addConsole(we.sType + " → " + "select 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeShow" : function(we) {
+			addConsole(we.sType + " → " + "beforeShow 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"show" : function(we) {
+			addConsole(we.sType + " → " + "show 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeHide" : function(we) {
+			addConsole(we.sType + " → " + "beforeHide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"hide" : function(we) {
+			addConsole(we.sType + " → " + "hide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeSlide" : function(we) {
+			addConsole(we.sType + " → " + "beforeSlide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"slide" : function(we) {
+			addConsole(we.sType + " → " + "slide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		}
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oTab = new jindo.m.Tab("tabComponent", {
+		nCountOnList : 2,
+		nPanelDuration : 500,
+		nHeight : 120,
+		nWidth : 0
+	}).attach({
+		"beforeSelect" :  function(we) {
+			addConsole(we.sType + " → " + "select 선택하기 전에 호출 (index : " + we.nIndex + ")");
+		},
+		"select" : function(we) {
+			addConsole(we.sType + " → " + "select 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeShow" : function(we) {
+			addConsole(we.sType + " → " + "beforeShow 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"show" : function(we) {
+			addConsole(we.sType + " → " + "show 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeHide" : function(we) {
+			addConsole(we.sType + " → " + "beforeHide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"hide" : function(we) {
+			addConsole(we.sType + " → " + "hide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"beforeSlide" : function(we) {
+			addConsole(we.sType + " → " + "beforeSlide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		},
+		"slide" : function(we) {
+			addConsole(we.sType + " → " + "slide 선택한 후에 호출 (index : " + we.nIndex + ")");
+		}
+	});
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

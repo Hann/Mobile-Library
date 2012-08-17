@@ -1,0 +1,25 @@
+{+include("index_header.html")+}
+
+<div id="ct">
+    <h2>{=COMPONENT}</h2>
+    <div class="info">
+        <p>여러개의 콘텐츠 영역을 사용자 터치의 움직임을 통해 좌/우, 상/하 로 슬라이드하여 보여주는 컴포넌트</p>
+    </div>
+
+    <div class="shdo">
+        <div class="cpt">
+            <span class="lft"></span>
+            <h3>Sample</h3>
+            <span class="rgt"></span>
+        </div>
+
+        <ul class="lst">
+        <li><a href="default.html">기본예제</a></li>
+        <li><a href="vertical.html">세로플리킹</a></li>
+        <li><a href="imageHorizontal.html">네비게이션과 연동예제</a></li>
+		<li><a href="nFlickDistance.html">nFlickDistanceOffset 옵션 사용예제</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

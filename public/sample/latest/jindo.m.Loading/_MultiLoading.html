@@ -1,0 +1,120 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			<p>부분영역을 기준으로 로딩 컴포넌트가 실행된다.</p><br>
+			<div id="target">
+				
+			</div>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<p>로딩컴포넌트가 보여지고 5초 후에 자동 사라집니다.</p>
+			<button type="button" id="show1" class="btn">부분로딩 보이기</button></br>
+			<button type="button" id="show2" class="btn">전체로딩 보이기</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oLoading1 = new jindo.m.Loading("target", {
+		nHeight : 50,
+		nWidth : 50,
+		sDefaultForeground : "green",
+		sLoadingText : "부분 로딩바입니다"
+	});
+	var oLoading2 = new jindo.m.Loading(null, {
+		nHeight : 150,
+		nWidth : 150,
+		sDefaultForeground : "red",
+		sLoadingText : "전체 로딩바입니다"
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Loading.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+	
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oLoading1 = new jindo.m.Loading("target", {
+		nHeight : 50,
+		nWidth : 50,
+		sDefaultForeground : "green",
+		sLoadingText : "부분 로딩바입니다"
+	});
+	var oLoading2 = new jindo.m.Loading(null, {
+		nHeight : 150,
+		nWidth : 150,
+		sDefaultForeground : "red",
+		sLoadingText : "전체 로딩바입니다"
+	});
+	jindo.$Fn(function(we) {
+		oLoading1.show();
+		setTimeout(function() {
+			oLoading1.hide();
+		},5000);
+	}).attach("show1", "click");
+	jindo.$Fn(function(we) {
+		oLoading2.show();
+		setTimeout(function() {
+			oLoading2.hide();
+		},5000);
+	}).attach("show2", "click");
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

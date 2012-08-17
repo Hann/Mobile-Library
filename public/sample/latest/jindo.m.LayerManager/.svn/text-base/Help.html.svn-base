@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo</title>
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../css/w.css" />
+<style>
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {	
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script src="../../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.UIComponent.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+<script src="../../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.js" charset="utf-8"></script>
+<script src="../js/common.js" charset="utf-8"></script>
+
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushXml.js"></script> 
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.tagName = 'textarea';
+	SyntaxHighlighter.config.clipboardSwf = '../../../doc/resource/syntaxhighlighter/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+
+
+<!-- Header -->
+<div id="hd">
+    <a href="#" class="prev _prev">
+        <span class="hc">이전</span>
+    </a>
+    <div class="name">
+    	<h1><a href="../index.html">Jindo Mobile Component<span class="beta">beta</span></a></h1>
+    </div>
+    <!-- QR코드 동적생성 -->
+    <div class="qr">
+    	<a href="#" id='qr_btn' class="btop">
+        	<span class="hc">QR코트펼치기</span>
+        </a>
+    </div>
+    <div id="qr_layer" class="qrcode" style="display:none;z-index:20;">
+    	<div id='QRView' style="position:relative;padding-top:29px;padding-left:18px;"></div>
+    </div>
+    <!--// QR코드  동적생성 -->
+</div>
+<!--// Header -->
+<div id="browser_notice" class="ct" style="display:none;margin:5px 2px 0;overflow:hidden;"><div class="demo" style="text-align:left;padding-left:10px;font-size:13px;color:#ba0000;">※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</div></div>
+
+<style>
+/* 개별 Sample 관련 CSS */
+.ts{position:relative;width:100%;height:24px;padding-top:10px;text-align:left;padding-left:30px;}
+.ts{position:relative;width:100%;color:#fff;text-align:left}
+.ts .lk{display:block;position:absolute;top:9px;left:5px;width:64px;height:15px;}
+.ts .helpt_on{display:block;position:absolute;top:38px;left:10px;padding-top:6px;background:url(../im/bg_help.png) no-repeat}
+.ts .helpt_on .sbox{width:219px;padding:10px 10px 10px 9px;border:1px solid #999;border-top:0;background:#fff;color:#222;letter-spacing:-1px;text-align:justify;text-align:left}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">jindo.m.LayerManager</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">
+	</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">
+	</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">
+	var oLm = new jindo.m.LayerManager("layer")
+		.attach("beforeShow", function(we) {
+			addConsole(we.sType + " → " + "보여지기 전에 호출");
+		})
+		.attach("show", function(we) {
+			addConsole(we.sType + " → " + "보여진 후에 호출");
+		})
+		.attach("beforeHide", function(we) {
+			addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})
+		.attach("hide", function(we) {
+			addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})	
+		.attach("ignore", function(we) {
+			addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+		})
+		.link("layer", "btnHelp", "btnLink", "btnUnlink");	
+	</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">
+			<div class="ts">
+				<button  type="button" id="btnHelp" class="btn" onclick="oLm.toggle();">"도움말 버튼"을 눌러주세요</button>
+				<div id="layer" class="helpt_on" style="display:none">
+					<div class="sbox">
+					도움말이 보여지지 않는 상태에서 도움말 버튼을 선택하면, 도움말이 보입니다.<br/>
+					도움말이 보여진 상태에서 도움말 버튼을 선택시, 도움말이 사라집니다.<br/><br/>
+					도움말이 보여진 상태에서 Link되지 않은 영역을 선택시, 도움말이 사라집니다.<br/><br/>
+					
+					현재 데모에서 Link된 영역은 <span id="notice" style="color:red">도움말(#layer), 도움말버튼(#btnHelp)</span> 입니다
+					</div>
+				</div>
+			</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<button type="button" id="btnLink"  class="btn">도움말(#layer)영역 link 시키기</button>
+			<button type="button" id="btnUnlink" class="btn">도움말(#layer)영역 unlink 시키기</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->	
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<!--includeHtmlEnd -->
+	/*includeScript*/
+	var oLm = new jindo.m.LayerManager("layer")
+		.attach("beforeShow", function(we) {
+			addConsole(we.sType + " → " + "보여지기 전에 호출");
+		})
+		.attach("show", function(we) {
+			addConsole(we.sType + " → " + "보여진 후에 호출");
+		})
+		.attach("beforeHide", function(we) {
+			addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})
+		.attach("hide", function(we) {
+			addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})	
+		.attach("ignore", function(we) {
+			addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+		})
+		.link("layer", "btnHelp", "btnLink", "btnUnlink");	
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	jindo.$Fn(function(){
+		oLm.link("layer");
+		jindo.$("notice").innerHTML = "도움말(#layer), 도움말버튼(#btnHelp)";	
+	},this).attach(jindo.$("btnLink"), "click");
+	
+	jindo.$Fn(function(){
+		oLm.unlink("layer");
+		jindo.$("notice").innerHTML = "도움말버튼(#btnHelp)";	
+	},this).attach(jindo.$("btnUnlink"), "click");
+
+	var oLm = new jindo.m.LayerManager("layer")
+		.attach("beforeShow", function(we) {
+			addConsole(we.sType + " → " + "보여지기 전에 호출");
+		})
+		.attach("show", function(we) {
+			addConsole(we.sType + " → " + "보여진 후에 호출");
+		})
+		.attach("beforeHide", function(we) {
+			addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})
+		.attach("hide", function(we) {
+			addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})	
+		.attach("ignore", function(we) {
+			addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+		})
+		.link("layer", "btnHelp", "btnLink", "btnUnlink");
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+</body>
+</html>

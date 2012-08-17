@@ -1,0 +1,186 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo" style="padding:10px 0;">
+		<div class="lm" style="margin:0px;padding:0px;">
+			<div id="layer1" style="height:150px;background-color:#7357B2;">
+				<p style="padding:20px;color:white;">위쪽으로 뒤집히는 레이어</p>
+			</div>	
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<div id="demo">
+		<div class="lm" style="margin-top:0px;">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			<p>iphone 혹은  ipad 에서 확인해 주세요</p>
+			<p class="dot">Android 기종에서는 flip 효과가 아닌 cartwheel 효과로 보일 수 있습니다</p>
+		</div>
+	</div>
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			<input type="text" class="op_w50" id="nDuration"  value="1000"> (ms)시간동안  점차적으로
+			<button type="button" id="flip" class="btn">flipUp</button> 			
+			<button type="button" id='reset' style="margin-left:10px" class="btn">초기화</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer">
+		레이어
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oEffect = new jindo.m.LayerEffect('layer');
+	
+	oEffect.flip({
+		sDirection: 'up',
+		nDuration : 1000 
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var welContents = jindo.$Element('ct');
+var welDemo = jindo.$Element('demo');
+var welLayer = jindo.$Element('layer1');
+
+var nInitH = welDemo.height();
+var nMinLayerH = 250;	
+
+//화면리사이즈 처리
+function setSize(){
+	welDemo.height(nInitH);
+	
+	var nCurrentH = welContents.height();
+	var nScreenH =  jindo.$Document().clientSize().height;
+	
+	
+	if(nCurrentH > nScreenH){ //스크롤이 생겼을 경우
+		var nNewH = nCurrentH - nScreenH;
+		nNewH = nInitH - nNewH;
+		nNewH = Math.max(nMinLayerH, nNewH);
+	}else{ //화면이 클경우
+		var nNewH = nScreenH - nCurrentH + nInitH -50;		
+	}
+	
+	welDemo.height(nNewH);
+	welLayer.height(nNewH-20);		
+}
+setSize();		
+	
+	//화면 로테이션 및 리사이즈 처리
+	jindo.m.bindRotate(jindo.$Fn(this.setSize, this).bind());
+	
+	var oEffect = new jindo.m.LayerEffect(welLayer.$value());
+	
+	oEffect.attach({
+		'beforeEffect' : function(oCustomEvt){ 
+			addConsole('before → '+ oCustomEvt.sEffect +' 발생전');
+		},		
+		'afterEffect' : function(oCustomEvt){
+			addConsole('end → '+ oCustomEvt.sEffect +' 완료');
+		}	
+	});
+	
+	
+	var wfFlip = jindo.$Fn(function(evt){
+		if(typeof evt !== 'undefined'){
+			evt.stop();
+		}
+		if(oEffect.isPlaying()){
+			alert('현재 진행중이예요!!');			
+			return;
+		}
+						
+		var htOption={sDirection:'up'};
+		
+		var nTime = jindo.$('nDuration').value;
+		if(nTime.length > 0){
+			htOption.nDuration = nTime*1;	
+		}
+		oEffect.flip(htOption);
+	},this);
+	
+
+	wfFlip.attach(jindo.$('flip'),'click');
+	jindo.$Fn(function(){
+		//window load시에 setSize 함수 수행하기 때문에 interval을 두고 실행함
+		setTimeout(function(){
+			wfFlip.$value()();
+		},500);
+	},this).attach(window,'load');
+	//wfFlip.attach(window,'load');	
+	
+//reset버튼
+	jindo.$Fn(function(evt){
+		evt.stop();
+		welLayer.$value().style.webkitTransform = 'rotateY(0deg) rotateX(0deg)';
+	},this).attach(jindo.$('reset'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

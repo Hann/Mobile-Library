@@ -1,0 +1,26 @@
+{+include("index_header.html")+}
+
+<div id="ct">
+    <h2>{=COMPONENT}</h2>
+    <div class="info">
+        <p>여러개의 항목들을 페이지 형태로 표현해 주는 컴포넌트</p>
+    </div>
+
+    <div class="shdo">
+        <div class="cpt">
+            <span class="lft"></span>
+            <h3>Sample</h3>
+            <span class="rgt"></span>
+        </div>
+
+        <ul class="lst">
+        <li><a href="default.html">기본예제</a></li>
+        <li><a href="navigation.html">동적아이템 생성</a></li>
+		<li><a href="useAjaxOption.html">Ajax호출 예제</a></li>
+		<li><a href="view.html">템플릿에 따른 UI 변경</a></li>
+        <li><a href="ajaxOnError.html">AjaxError 옵션예제</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

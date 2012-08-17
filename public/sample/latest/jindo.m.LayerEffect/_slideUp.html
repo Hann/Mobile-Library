@@ -1,0 +1,215 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo" style="padding:10px 0;">
+		<div id="holder" class="lm" style="margin:0px;padding:0px;position:relative;">
+			<div id="layer1" style="background-color:#ffc000;position:absolute;">
+				<p style="padding:10px;">위쪽으로 움직이는 레이어</p>			
+			</div>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="lm" style="margin-top:0px;">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			<p>px을 지정하지 않으시면 레이어의 높이  만큼 이동합니다.<br></p>
+			<p>기기를 회전하면 레이어는 <span style="color:#1BB324;font-weight:bold;">제자리</span>로 옮겨집니다.</p>			
+		</div>
+		<div class="op">
+			<!-- 옵션은 이 영역에 작성하세요. -->
+			<input type="text" id="nDuration"  class="op_w50" value="1000">(ms) 동안
+			<input type="text" id="nSize"  class="op_w30">(px) 만큼 위쪽으로 
+			<button type="button" id="slide" class="btn">Slide</button>
+			<button type="button" id="reset" class="btn" style="margin-left:10px;">제자리로</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer">
+		레이어
+	</div>	
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oEffect = new jindo.m.LayerEffect('layer');
+	
+	oEffect.slide({
+		sDirection: 'up',
+		nDuration : 1000 
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var welContents = jindo.$Element('ct');
+var welDemo = jindo.$Element('demo');
+var welHolder = jindo.$Element('holder');
+var welLayer = jindo.$Element('layer1');
+
+var nInitW = welDemo.width();
+var nInitH = welDemo.height();
+var nMinLayerH = 250;	
+
+function setSize(){
+	welDemo.height(nInitH);
+			
+	var nCurrentH = welContents.height();
+	var nScreenH =  jindo.$Document().clientSize().height;
+	
+	if(nCurrentH > nScreenH){ //스크롤이 생겼을 경우
+		var nNewH = nCurrentH - nScreenH;
+		nNewH = nInitH - nNewH;		
+		
+	}else{ //화면이 클경우
+		var nNewH = nScreenH - nCurrentH + nInitH;
+		
+	}
+	nNewH = Math.max(nMinLayerH, nNewH);
+	welDemo.height(nNewH);
+	welHolder.height(nNewH-20);
+	welLayer.width(welDemo.width()-2);
+	welLayer.height(Math.ceil((nNewH-20)/5));
+	reset();
+}	
+
+setSize();
+
+
+//화면 로테이션 및 리사이즈 처리
+jindo.m.bindRotate(jindo.$Fn(function(){
+		if (oEffect.isPlaying()) {
+			oEffect.stop();
+		}
+		setSize();
+		oEffect.setSize();		
+		setTimeout(function(){
+			reset();
+		},100);	
+}, this).bind());
+
+var oEffect = new jindo.m.LayerEffect(jindo.$('layer1'));	
+oEffect.attach({
+		'beforeEffect' : function(oCustomEvt){
+			addConsole('before → '+ oCustomEvt.sEffect +' 발생전');
+		},		
+		'afterEffect' : function(oCustomEvt){
+			addConsole('end → '+ oCustomEvt.sEffect +' 완료');
+		}	
+});
+
+
+var wfSlide = jindo.$Fn(function(){
+		if(oEffect.isPlaying()){
+			alert('현재 움직이고 있어요!!');
+			return;
+		}
+		
+		var htOption ={sDirection:'up'};
+		var nTime = jindo.$('nDuration').value;
+		if(nTime.length > 0){
+			htOption.nDuration = nTime*1;	
+		}
+		
+		var nSize =  jindo.$('nSize').value;
+		if(nSize.length >0){
+			htOption.nSize = nSize;
+		}
+		
+		var nTop = Math.round(parseFloat(welLayer.css('top'),10));
+		
+		var nNext = nTop - (((typeof htOption.nSize) == 'undefined')? welLayer.height(): (htOption.nSize*1));		
+
+		if(nNext < 0){
+			alert('레이어가 화면 밖으로 나가서 slide 하지 않습니다');
+			return;
+		} 		
+		
+		oEffect.slide(htOption);
+		
+},this);
+	wfSlide.attach(jindo.$('slide'), 'click');
+	jindo.$Fn(function(){
+		//window load시에 setSize 함수 수행하기 때문에 interval을 두고 실행함
+		setTimeout(function(){
+			wfSlide.$value()();
+		},500);
+	},this).attach(window,'load');
+	//wfSlide.attach(window, 'load');
+
+
+function reset(){
+	var htOffset = welDemo.offset();
+	//welDemo의 padding값
+	var nTop = welDemo.height()-welLayer.height()-20;
+	welLayer.css('top', nTop);
+}
+	//제자리버튼 클릭 처리
+jindo.$Fn(function(evt){
+		evt.stop();
+		reset();
+},this).attach(jindo.$('reset'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

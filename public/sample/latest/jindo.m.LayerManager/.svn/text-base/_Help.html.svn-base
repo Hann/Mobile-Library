@@ -1,0 +1,145 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.ts{position:relative;width:100%;height:24px;padding-top:10px;text-align:left;padding-left:30px;}
+.ts{position:relative;width:100%;color:#fff;text-align:left}
+.ts .lk{display:block;position:absolute;top:9px;left:5px;width:64px;height:15px;}
+.ts .helpt_on{display:block;position:absolute;top:38px;left:10px;padding-top:6px;background:url(../im/bg_help.png) no-repeat}
+.ts .helpt_on .sbox{width:219px;padding:10px 10px 10px 9px;border:1px solid #999;border-top:0;background:#fff;color:#222;letter-spacing:-1px;text-align:justify;text-align:left}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">
+			<div class="ts">
+				<button  type="button" id="btnHelp" class="btn" onclick="oLm.toggle();">"도움말 버튼"을 눌러주세요</button>
+				<div id="layer" class="helpt_on" style="display:none">
+					<div class="sbox">
+					도움말이 보여지지 않는 상태에서 도움말 버튼을 선택하면, 도움말이 보입니다.<br/>
+					도움말이 보여진 상태에서 도움말 버튼을 선택시, 도움말이 사라집니다.<br/><br/>
+					도움말이 보여진 상태에서 Link되지 않은 영역을 선택시, 도움말이 사라집니다.<br/><br/>
+					
+					현재 데모에서 Link된 영역은 <span id="notice" style="color:red">도움말(#layer), 도움말버튼(#btnHelp)</span> 입니다
+					</div>
+				</div>
+			</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<button type="button" id="btnLink"  class="btn">도움말(#layer)영역 link 시키기</button>
+			<button type="button" id="btnUnlink" class="btn">도움말(#layer)영역 unlink 시키기</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->	
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<!--includeHtmlEnd -->
+	/*includeScript*/
+	var oLm = new jindo.m.LayerManager("layer")
+		.attach("beforeShow", function(we) {
+			addConsole(we.sType + " → " + "보여지기 전에 호출");
+		})
+		.attach("show", function(we) {
+			addConsole(we.sType + " → " + "보여진 후에 호출");
+		})
+		.attach("beforeHide", function(we) {
+			addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})
+		.attach("hide", function(we) {
+			addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})	
+		.attach("ignore", function(we) {
+			addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+		})
+		.link("layer", "btnHelp", "btnLink", "btnUnlink");	
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerManager.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	jindo.$Fn(function(){
+		oLm.link("layer");
+		jindo.$("notice").innerHTML = "도움말(#layer), 도움말버튼(#btnHelp)";	
+	},this).attach(jindo.$("btnLink"), "click");
+	
+	jindo.$Fn(function(){
+		oLm.unlink("layer");
+		jindo.$("notice").innerHTML = "도움말버튼(#btnHelp)";	
+	},this).attach(jindo.$("btnUnlink"), "click");
+
+	var oLm = new jindo.m.LayerManager("layer")
+		.attach("beforeShow", function(we) {
+			addConsole(we.sType + " → " + "보여지기 전에 호출");
+		})
+		.attach("show", function(we) {
+			addConsole(we.sType + " → " + "보여진 후에 호출");
+		})
+		.attach("beforeHide", function(we) {
+			addConsole(we.sType + " → " + "사라지기 전에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})
+		.attach("hide", function(we) {
+			addConsole(we.sType + " → " + "사라진 후에 호출 (선택된 영역 : " + we.elTarget + ")");
+		})	
+		.attach("ignore", function(we) {
+			addConsole(we.sType + " → " + "무시된 경우 호출 (무시된 영역 : " + we.elTarget + ")");
+		})
+		.link("layer", "btnHelp", "btnLink", "btnUnlink");
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo.m.CheckBox Design Template</title>
+
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushXml.js"></script> 
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.tagName = 'textarea';
+	SyntaxHighlighter.config.clipboardSwf = '../../../doc/resource/syntaxhighlighter/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+
+<style>
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0;-webkit-text-size-adjust:none}
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif;font-size:14px;line-height:1.25em}
+body{position:relative;color:#000;word-wrap:break-word;word-break:break-all;background-color:#f7f7f7}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+body {
+	padding:20px 10px 0px 10px;
+}
+
+/* CSS 시작*/
+
+/* Check 시 적용 CSS*/
+.frb-radiobtn-on{	    
+	background:#4596CE !important; /* 체크 되었을 경우 배경색*/
+	
+	/* 선택시 배경 그라데이션 적용*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#85bae4),to(#5393c5)) !important;
+	background-image: -webkit-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -moz-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -ms-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -o-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: linear-gradient(top,#85bae4,#5393c5) !important;
+}
+.frb-radiobtn-on .frb-radiobtn-label{	    
+	color:#fff !important; /* 체크 되었을 경우 글자색*/
+}
+
+/* 비활성화시 적용 CSS*/
+.frb-radiobtn-disable{
+	opacity:.3; /* 투명도 */
+	cursor: default; /* 마우스 포인터 모양 */
+}
+
+/* RadioButton 단위 Unit CSS*/
+.frb-radiobtn-unit {
+	cursor:pointer;
+	position:relative; 
+	margin:0;
+	padding:.7em 0 .7em 35px; /* 내부 여백 영역 이부분을 수정 하여 Unit의 Padding 을 조절 하여 높이나 label 부분의 위치를 조정*/
+	border-bottom:1px solid #ccc;
+	list-style:none;
+	
+	/* CSS 그라데이션 설정. 그라데이션 색을 조정 할 수있음.*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#eee));
+	background-image: -webkit-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -moz-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -ms-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -o-linear-gradient(top,#fdfdfd,#eee);
+	background-image: linear-gradient(top,#fdfdfd,#eee);
+}
+
+/* RadioButton 단위 Unit 첫번째 엘리먼트 CSS*/
+.frb-radiobtn-unit:first-child {
+	/* 상단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-top-left-radius: .6em; 
+	border-top-left-radius: .6em; 
+	-webkit-border-top-right-radius: .6em; 
+	border-top-right-radius: .6em;	
+}
+
+/* RadioButton 단위 Unit 마지막 엘리먼트 CSS*/
+.frb-radiobtn-unit:last-child{
+	border-bottom:0; 
+	/* 하단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-bottom-left-radius: .6em; 
+	border-bottom-left-radius: .6em; 
+	-webkit-border-bottom-right-radius: .6em; 
+	border-bottom-right-radius: .6em;
+}
+
+/* RadioButton Container CSS. CheckBox 외곽부분의 스타일 지정 */
+.frb-radiobtn-cont{	
+	overflow:hidden;	
+	border:1px solid #ccc;
+	/* 전체모양의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-radius: .6em; 
+	border-radius: .6em;
+}
+/* RadioButton CSS.*/
+.frb-radiobtn{
+	position:absolute;top:7px;left:10px;margin:0; /* 실제 RadioButton의 위치*/
+}
+
+/* RadioButton Label CSS.*/
+.frb-radiobtn-label{
+	display:block;	
+	font-size:1em; font-weight:bold; color:#444; text-decoration:none;	/* RadioButton Label의 Font속성 수정 */
+	cursor:pointer;	
+}
+/* CSS 끝 */
+</style>
+</head>
+<body>
+<h3>라운드 처리가 된 세로 기본형 RadioButton</h3>
+<br/>
+
+<!-- 마크업 부분 시작 -->
+<div id="radioBtn">	
+	<ul class="frb-radiobtn-cont">
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit1" value="Apple" class="frb-radiobtn" checked>
+			<label for="fruit1" class="frb-radiobtn-label">Apple</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit2" value="Banana" class="frb-radiobtn">
+			<label for="fruit2" class="frb-radiobtn-label">Banana</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit3" value="Orange" class="frb-radiobtn">
+			<label for="fruit3" class="frb-radiobtn-label">Orange</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit4" value="Lemon" class="frb-radiobtn">
+			<label for="fruit4" class="frb-radiobtn-label">Lemon</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit5" value="Grape" class="frb-radiobtn">
+			<label for="fruit5" class="frb-radiobtn-label">Grape</label>
+		</li>
+	</ul>
+</div>
+<!-- 마크업 부분 끝 -->
+<br/><br/><br/>
+<h3>Templet Source</h3>
+<p style="font-size:12px;color:red;padding:10px 20px 0;">
+	하단의 코드를 Copy&Paste하여 적용한다.<br/>
+	폰트, 너비, 색상 등 스타일 변경이 필요하다면 소스내 주석을 참고하여, 원하는 부분의 스타일을 수정하여 적용한다.
+</p>
+<textarea class="brush: xml;">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<style>
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0;-webkit-text-size-adjust:none}
+body,input,textarea,select,button,table{font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,AppleGothic,sans-serif;font-size:14px;line-height:1.25em}
+body{position:relative;color:#000;word-wrap:break-word;word-break:break-all;background-color:#f7f7f7}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+body {
+	padding:20px 10px 0px 10px;
+}
+
+/* RadioButton CSS 시작*/
+
+/* Check 시 적용 CSS*/
+.frb-radiobtn-on{	    
+	background:#4596CE !important; /* 체크 되었을 경우 배경색*/
+	
+	/* 선택시 배경 그라데이션 적용*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#85bae4),to(#5393c5)) !important;
+	background-image: -webkit-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -moz-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -ms-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: -o-linear-gradient(top,#85bae4,#5393c5) !important;
+	background-image: linear-gradient(top,#85bae4,#5393c5) !important;
+}
+.frb-radiobtn-on .frb-radiobtn-label{	    
+	color:#fff !important; /* 체크 되었을 경우 글자색*/
+}
+
+/* 비활성화시 적용 CSS*/
+.frb-radiobtn-disable{
+	opacity:.3; /* 투명도 */
+	cursor: default; /* 마우스 포인터 모양 */
+}
+
+/* RadioButton 단위 Unit CSS*/
+.frb-radiobtn-unit {
+	cursor:pointer;
+	position:relative; 
+	margin:0;
+	padding:.7em 0 .7em 35px; /* 내부 여백 영역 이부분을 수정 하여 Unit의 Padding 을 조절 하여 높이나 label 부분의 위치를 조정*/
+	border-bottom:1px solid #ccc;
+	list-style:none;
+	
+	/* CSS 그라데이션 설정. 그라데이션 색을 조정 할 수있음.*/
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#eee));
+	background-image: -webkit-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -moz-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -ms-linear-gradient(top,#fdfdfd,#eee);
+	background-image: -o-linear-gradient(top,#fdfdfd,#eee);
+	background-image: linear-gradient(top,#fdfdfd,#eee);
+}
+
+/* RadioButton 단위 Unit 첫번째 엘리먼트 CSS*/
+.frb-radiobtn-unit:first-child {
+	/* 상단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-top-left-radius: .6em; 
+	border-top-left-radius: .6em; 
+	-webkit-border-top-right-radius: .6em; 
+	border-top-right-radius: .6em;	
+}
+
+/* RadioButton 단위 Unit 마지막 엘리먼트 CSS*/
+.frb-radiobtn-unit:last-child{
+	border-bottom:0; 
+	/* 하단의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-bottom-left-radius: .6em; 
+	border-bottom-left-radius: .6em; 
+	-webkit-border-bottom-right-radius: .6em; 
+	border-bottom-right-radius: .6em;
+}
+
+/* RadioButton Container CSS. CheckBox 외곽부분의 스타일 지정 */
+.frb-radiobtn-cont{	
+	overflow:hidden;	
+	border:1px solid #ccc;
+	/* 전체모양의 라운드 효과 처리. 라운드 값을 조정하여 둥글림 효과 정도를 지정.*/
+	-webkit-border-radius: .6em; 
+	border-radius: .6em;
+}
+/* RadioButton CSS.*/
+.frb-radiobtn{
+	position:absolute;top:7px;left:10px;margin:0; /* 실제 RadioButton의 위치*/
+}
+
+/* RadioButton Label CSS.*/
+.frb-radiobtn-label{
+	display:block;	
+	font-size:1em; font-weight:bold; color:#444; text-decoration:none;	/* RadioButton Label의 Font속성 수정 */
+	cursor:pointer;	
+}
+</style>
+</head>
+<body>
+<div id="radioBtn">	
+	<ul class="frb-radiobtn-cont">
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit1" value="Apple" class="frb-radiobtn" checked>
+			<label for="fruit1" class="frb-radiobtn-label">Apple</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit2" value="Banana" class="frb-radiobtn">
+			<label for="fruit2" class="frb-radiobtn-label">Banana</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit3" value="Orange" class="frb-radiobtn">
+			<label for="fruit3" class="frb-radiobtn-label">Orange</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit4" value="Lemon" class="frb-radiobtn">
+			<label for="fruit4" class="frb-radiobtn-label">Lemon</label>
+		</li>
+		<li class="frb-radiobtn-unit">				
+			<input type="radio" name="radio_name" id="fruit5" value="Grape" class="frb-radiobtn">
+			<label for="fruit5" class="frb-radiobtn-label">Grape</label>
+		</li>
+	</ul>
+</div>
+
+<!-- - jindo 프레임웍 import -->
+<script src="../../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+<!--
+	- JMC(jindo mobile component) import import. 
+	  아래 파일들은 선택다운로드(http://jindo.dev.naver.com/docs/jindo-mobile/download/index.html)에서 
+	  압축다운로드된 한개의 파일(jindo_mobile_component.js)로 대체 가능하다.
+--> 
+<script src="../../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.UIComponent.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.RadioButton.js" charset="utf-8"></script>
+<script type="text/javascript">
+// RadioButton 생성.
+var oRadioButton = new jindo.m.RadioButton("radioBtn");
+</script>
+</body>
+</html>
+</textarea>
+
+<script src="../../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.UIComponent.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.RadioButton.js" charset="utf-8"></script>
+<script type="text/javascript">
+var oRadioButton = new jindo.m.RadioButton("radioBtn");
+</script>
+</body>
+</html>

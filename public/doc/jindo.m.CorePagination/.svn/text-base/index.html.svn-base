@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m.CorePagination </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">RELEASE<a href="#" class="cls" id="btnRelease">close</a></h2>
+				<ul class="snb_lst"id="release">
+				<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.LayerManager/index.html">LayerManager</a></li>
+				<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition</a></li>
+				<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer</a></li>
+				<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+				<li><a href="../jindo.m.Accordion/index.html">Accordion </a></li>
+				<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+				<li><a href="../jindo.m.SlideTab/index.html">SlideTab </a></li>
+				<li><a href="../jindo.m.TextInput/index.html">TextInput </a></li>
+				<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+				<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+				<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+				<li><a href="../jindo.m.Datepicker/index.html">Datepicker <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Slider/index.html">Slider </a></li>
+				<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton </a></li>
+				<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation </a></li>
+				<li><a href="../jindo.m.Touch/index.html">Touch </a></li>
+				<li><a href="../jindo.m.Transition/index.html">Transition <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Validation/index.html">Validation </a></li>
+				<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+				<li><a href="../jindo.m.Loading/index.html">Loading <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li><a href="../jindo.m.DragArea/index.html">DragArea <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li style="margin-bottom:8px;"><a href="../jindo.m.DropArea/index.html">DropArea <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				</ul>
+			</div>
+			<div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	  			<li><a href="javascript:void(0)">IndexScroll</a></li>
+	            <li><a href="javascript:void(0)">Selectbox</a></li>
+	            <li><a href="javascript:void(0)">MultiTouch</a></li>
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	            <li style="margin-bottom:8px;"><a href="javascript:void(0)">UI Template</a></li>
+	        	</ul>
+			</div>
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m.CorePagination</h3>
+							<p class="p_txt2">
+								<span>Version : 1.1.0</span>
+								<br />
+								페이징 코어 컴포넌트 
+							</p>
+							<a href="../../sample/latest/jindo.m.CorePagination/index.html" class="btn">Sample</a>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+				<!-- 상세 설명 -->
+				<h3>Description</h3>
+				<div class="t1">
+					페이징 코어 컴포넌트 <br>
+					페이징을 사용하는 컴포넌트에서 이 컴포넌트를 상속하여 구현한다 <br>
+					MoreContentButton, PageNavigation 컴포넌트는 이 컴포넌트를 상속받아서 구현한다.<br>
+					단독으로 사용하는 컴포넌트는 아니다
+				</div>	
+				
+				<!-- 초기화 방법 -->
+				<h3>Initialization</h3>
+				<div class="t1">
+					<dl>			
+						<dt>Javascript</dt>
+						<dd>
+							<textarea class="brush: javascript;">
+								var oComponent = new jindo.m.CorePagination({
+									nItem : 10,
+									nItemPerPage : 10,
+									nPage : 1
+								});
+							</textarea>
+							
+						</dd>
+					</dl>
+				</div>
+				
+				<!-- 초기화 옵션 -->
+				<h3>Option</h3>
+				<div class="t1">
+					<table class="option" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>Name</th>
+							<th>Desc</th>
+							<th>Default</th>
+						</tr>
+						<tr>
+							<td class="name">nItem</td>
+							<td>전체아이템수</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nItemPerPage</td>
+							<td>1페이지당 아이템개수</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td class="name">nPage</td>
+							<td>현재 페이지</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</div>
+					
+					<!-- Method -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+				<tr class="constructor_title">
+					<td class="name">
+						<p>jindo.m.CorePagination</p>
+						<p class="constructor">&lt;constructor&gt;</p> 
+					</td>
+					<td>
+						<a name="constructor"></a>
+						<span class='description'>초기화 함수</span>
+						<h5>Usage</h5>
+						<span class="t1">
+							new <strong>jindo.m.CorePagination</strong>(htUserOption)
+						</span>
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HashTable}</span> <strong>htUserOption</strong>
+									
+									: 추가 옵션 (생략가능)
+								</li>
+							
+							</ul>
+						
+						
+						<!-- Extends -->
+						
+							<h5>Extends : 
+									jindo.UIComponent
+							</h5>
+						
+						
+						<!-- Requires -->
+						
+						
+						
+					</td>
+				</tr>
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getCurrentPage"></a>getCurrentPage
+					</td>
+					<td>
+						현재 페이지를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getCurrentPage</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getPageItemIndex"></a>getPageItemIndex
+					</td>
+					<td>
+						n 페이지의 아이템들의 start, end 인덱스를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">HashTable </span>
+								
+						
+						<strong class="method">getPageItemIndex</strong>(n)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">HashTable </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">
+var htIndex = oCorePagination.getPageIntemIndex(2);
+htIndex.nStart //2페이지의 아이템의 시작 인덱스 
+htIndex.nEnd //2페이지의 아이템의 끝 인덱스</textarea>
+							
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getPageOfItem"></a>getPageOfItem
+					</td>
+					<td>
+						n번째 아이템이 몇번째 페이지인지 구한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getPageOfItem</strong>(n)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getTotalPages"></a>getTotalPages
+					</td>
+					<td>
+						전체 페이지 수를 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Number </span>
+								
+						
+						<strong class="method">getTotalPages</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Number </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="hasNextPage"></a>hasNextPage
+					</td>
+					<td>
+						다음 페이지가 있는지 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Boolean </span>
+								
+						
+						<strong class="method">hasNextPage</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Boolean </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="hasPreviousPage"></a>hasPreviousPage
+					</td>
+					<td>
+						이전 페이지가 있는지 리턴한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">Boolean </span>
+								
+						
+						<strong class="method">hasPreviousPage</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">Boolean </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="movePageTo"></a>movePageTo
+					</td>
+					<td>
+						n 페이지로 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">movePageTo</strong>(n)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="nextPageTo"></a>nextPageTo
+					</td>
+					<td>
+						현재 페이지의 다음 페이지로 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">nextPageTo</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="previousPageTo"></a>previousPageTo
+					</td>
+					<td>
+						현재 페이지의 다음 페이지로 이동한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">previousPageTo</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setItemCount"></a>setItemCount
+					</td>
+					<td>
+						전체 아이템 개수를 설정한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setItemCount</strong>(n)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									: 아이템 개수
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="setItemPerPage"></a>setItemPerPage
+					</td>
+					<td>
+						한페이지당 아이템 개수를 설정한다&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">setItemPerPage</strong>(n)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Number}</span> <strong>n</strong>
+									
+									: 한 페이지당 아이템 개수
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+						
+						
+			
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href="#" class="nhn">NHN Corp.</a> MobileAjax Team All Rights Reserved.
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

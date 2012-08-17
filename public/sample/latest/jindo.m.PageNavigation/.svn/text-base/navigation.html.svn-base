@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo</title>
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../css/w.css" />
+<style>
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {	
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script src="../../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.UIComponent.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+<script src="../../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.js" charset="utf-8"></script>
+<script src="../js/common.js" charset="utf-8"></script>
+
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushXml.js"></script> 
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.tagName = 'textarea';
+	SyntaxHighlighter.config.clipboardSwf = '../../../doc/resource/syntaxhighlighter/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+
+
+<!-- Header -->
+<div id="hd">
+    <a href="#" class="prev _prev">
+        <span class="hc">이전</span>
+    </a>
+    <div class="name">
+    	<h1><a href="../index.html">Jindo Mobile Component<span class="beta">beta</span></a></h1>
+    </div>
+    <!-- QR코드 동적생성 -->
+    <div class="qr">
+    	<a href="#" id='qr_btn' class="btop">
+        	<span class="hc">QR코트펼치기</span>
+        </a>
+    </div>
+    <div id="qr_layer" class="qrcode" style="display:none;z-index:20;">
+    	<div id='QRView' style="position:relative;padding-top:29px;padding-left:18px;"></div>
+    </div>
+    <!--// QR코드  동적생성 -->
+</div>
+<!--// Header -->
+<div id="browser_notice" class="ct" style="display:none;margin:5px 2px 0;overflow:hidden;"><div class="demo" style="text-align:left;padding-left:10px;font-size:13px;color:#ba0000;">※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</div></div>
+
+<style>
+.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap;}
+.u_pg2 em{font-style:normal;}
+.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+.u_pg2_btn.uc_vh{visibility:hidden}
+.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+.u_pg2_total{color:#999}
+.tCnt {float:left; width:50%;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">jindo.m.PageNavigation</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">
+	.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap;}
+	.u_pg2 em{font-style:normal;}
+	.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+	.u_pg2_btn.uc_vh{visibility:hidden}
+	.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+	.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+	.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+	.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+	.u_pg2_total{color:#999}
+	.tCnt {float:left; width:50%;}
+	</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">
+	<!-- 동적으로 컨텐츠가 추가되는 영역 -->
+	<div style="clear:both;overflow:hidden;">
+		<ul class="tCnt">
+		</ul>
+		<ul class="tCnt">
+		</ul>
+	</div>
+	<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<div class="u_pg2" id='paging'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>				
+				
+				<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+				
+				<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+				<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+				 
+			</div>
+	</div>		
+	</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">
+	var aData = ['1번째 아이템','2번째 아이템', '3번째 아이템','4번째 아이템','5번째 아이템','6번째 아이템','7번째 아이템','8번째 아이템','9번째 아이템','10번째 아이템','11번째 아이템','12번째 아이템', '13번째 아이템','14번째 아이템','15번째 아이템'
+		,'16번째 아이템','17번째 아이템','18번째 아이템','19번째 아이템','20번째아이템','21번째 아이템','22번째 아이템', '23번째 아이템','24번째 아이템','25번째 아이템','26번째 아이템','27번째 아이템','28번째 아이템','29번째 아이템','30번째아이템'];
+	
+	//동적으로 추가되는 컨텐츠 영역
+	var aWel =[];
+	jindo.$A(jindo.$(".tCnt")).forEach(function(value, index, array){
+		aWel.push(jindo.$Element(value));
+	});	
+	var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : aData.length, //아이템 개수
+		nItemPerPage : 4,
+		nPage : 1,
+		sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>'
+	}).attach({
+		'move' : function(oCustomEvt){
+			//실제로 컨텐츠를 추가하는 로직
+			var sTpl = '<li><a href="#">{=TEXT}</a></li>';				
+			var aTemp=[];
+			for(var i=oCustomEvt.nStartIndex; i<= oCustomEvt.nEndIndex; i++){
+				var sHtml = sTpl.replace(/{=TEXT}/,aData[i]);
+				aTemp.push(sHtml);
+			}
+			if(aTemp.length > 2){
+				aWel[0].html(aTemp.slice(0,2).join(""));
+				aWel[1].html(aTemp.slice(2).join(""));
+			}else{
+				aWel[0].html(aTemp.join(""));
+				aWel[1].html("");
+			}	
+		}
+	});
+	oPage.movePageTo(1);
+	</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div style="clear:both;overflow:hidden;">
+			<ul class="tCnt">
+			</ul>
+			<ul class="tCnt">
+			</ul>
+		</div>
+		<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<div class="u_pg2" id='paging'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>				
+				
+				<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+				
+				<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+				<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+				 
+			</div>
+		</div>		
+	</div>
+	<!--// Demo 영역 -->
+		
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap;}
+	.u_pg2 em{font-style:normal;}
+	.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+	.u_pg2_btn.uc_vh{visibility:hidden}
+	.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+	.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+	.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+	.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+	.u_pg2_total{color:#999}
+	.tCnt {float:left; width:50%;}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<!-- 동적으로 컨텐츠가 추가되는 영역 -->
+	<div style="clear:both;overflow:hidden;">
+		<ul class="tCnt">
+		</ul>
+		<ul class="tCnt">
+		</ul>
+	</div>
+	<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<div class="u_pg2" id='paging'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>				
+				
+				<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+				
+				<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+				<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+				 
+			</div>
+	</div>		
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var aData = ['1번째 아이템','2번째 아이템', '3번째 아이템','4번째 아이템','5번째 아이템','6번째 아이템','7번째 아이템','8번째 아이템','9번째 아이템','10번째 아이템','11번째 아이템','12번째 아이템', '13번째 아이템','14번째 아이템','15번째 아이템'
+		,'16번째 아이템','17번째 아이템','18번째 아이템','19번째 아이템','20번째아이템','21번째 아이템','22번째 아이템', '23번째 아이템','24번째 아이템','25번째 아이템','26번째 아이템','27번째 아이템','28번째 아이템','29번째 아이템','30번째아이템'];
+	
+	//동적으로 추가되는 컨텐츠 영역
+	var aWel =[];
+	jindo.$A(jindo.$$(".tCnt")).forEach(function(value, index, array){
+		aWel.push(jindo.$Element(value));
+	});	
+	var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : aData.length, //아이템 개수
+		nItemPerPage : 4,
+		nPage : 1,
+		sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>'
+	}).attach({
+		'move' : function(oCustomEvt){
+			//실제로 컨텐츠를 추가하는 로직
+			var sTpl = '<li><a href="#">{=TEXT}</a></li>';				
+			var aTemp=[];
+			for(var i=oCustomEvt.nStartIndex; i<= oCustomEvt.nEndIndex; i++){
+				var sHtml = sTpl.replace(/{=TEXT}/,aData[i]);
+				aTemp.push(sHtml);
+			}
+			if(aTemp.length > 2){
+				aWel[0].html(aTemp.slice(0,2).join(""));
+				aWel[1].html(aTemp.slice(2).join(""));
+			}else{
+				aWel[0].html(aTemp.join(""));
+				aWel[1].html("");
+			}	
+		}
+	});
+	oPage.movePageTo(1);
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.PageNavigation.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+//페이징하는 아이템 리스트, 개수가 적을 경우 서버에서 페이지로 바로 내려줍니다
+	var aData = ['1번째 아이템','2번째 아이템', '3번째 아이템','4번째 아이템','5번째 아이템','6번째 아이템','7번째 아이템','8번째 아이템','9번째 아이템','10번째 아이템','11번째 아이템','12번째 아이템', '13번째 아이템','14번째 아이템','15번째 아이템'
+		,'16번째 아이템','17번째 아이템','18번째 아이템','19번째 아이템','20번째아이템','21번째 아이템','22번째 아이템', '23번째 아이템','24번째 아이템','25번째 아이템','26번째 아이템','27번째 아이템','28번째 아이템','29번째 아이템','30번째아이템']
+	
+//동적으로 추가되는 컨텐츠 영역
+var aWel =[];
+	jindo.$A(jindo.$$(".tCnt")).forEach(function(value, index, array){
+		aWel.push(jindo.$Element(value));
+	});	
+//동적으로 추가되는 컨텐츠 마크업 템플릿
+	var sTpl = '<li><a href="#">{=TEXT}</a></li>';	
+	
+var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+	sClassPrefix : 'page-',
+	nItem : aData.length, //아이템 개수
+	nItemPerPage : 4,
+	nPage : 1,
+	sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>'
+}).attach({
+	'beforeMove' : function(oCustomEvt){
+		var sText = oCustomEvt.sType + " → " + " 현재페이지 : " + oCustomEvt.nCurrentPage+" ,이동페이지 : "+ oCustomEvt.nPage;
+		addConsole(sText);	
+	},
+	'move' : function(oCustomEvt){
+		var sText = oCustomEvt.sType + " → " + oCustomEvt.nPage + "페이지 이동완료!";
+		addConsole(sText);	
+		
+		var aTemp=[];
+		for(var i=oCustomEvt.nStartIndex; i<= oCustomEvt.nEndIndex; i++){
+			var sHtml = sTpl.replace(/{=TEXT}/,aData[i]);
+			aTemp.push(sHtml);
+		}
+		if(aTemp.length > 2){
+			aWel[0].html(aTemp.slice(0,2).join(""));
+			aWel[1].html(aTemp.slice(2).join(""));
+		}else{
+			aWel[0].html(aTemp.join(""));
+			aWel[1].html("");
+		}	
+	}
+});
+oPage.movePageTo(1);
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">		
+		<div id="mVertical" class='flick-view' style="overflow:hidden;height:200px;position:relative;background-color:grey;margin:10px 0;">
+			<ul  class="flick-container" style="width:100%;">
+				<li id="layer3" class="flick-ct" style="height:200px;background-color:#ff9999;">
+					<p style="font-size:2.0em;text-align:center;padding-top:50px;">Layer 0</p>
+				</li>
+				<li id="layer4" class="flick-ct" style="height:200px;background-color:#66cccc;">
+					<p style="font-size:2.0em;text-align:center;padding-top:50px;">Layer 1</p>
+				</li>
+				<li id="layer4" class="flick-ct" style="height:200px;background-color:#ffc000;">
+					<p style="font-size:2.0em;text-align:center;padding-top:50px;">Layer 2</p>
+				</li>
+				<li id="layer4" class="flick-ct" style="height:200px;background-color:#77BD2C;">
+					<p style="font-size:2.0em;text-align:center;padding-top:50px;">Layer 3</p>
+				</li>
+				<li id="layer4" class="flick-ct" style="height:200px;background-color:#FF729A;">
+					<p style="font-size:2.0em;text-align:center;padding-top:50px;">Layer 4</p>
+				</li>
+			</ul>
+			<div style="position:absolute;width:100%;height:1px;background-color:red;top:40px;z-index:100;"></div>
+			<div style="position:absolute;width:100%;height:1px;background-color:red;bottom:40px;z-index:100;"></div>	
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	<div class="lm">
+			<!-- 샘플설명은 이 영역에 작성하세요. -->
+			<span style="color:red">붉은색 선</span>영역은 40px 기준선<br>
+	</div>
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op" style="text-valign:middle">
+			<button type="button" id="aprev" class="btn">이전컨텐츠이동</button>
+			<button type="button" id="anext" class="btn">이후컨텐츠이동</button>
+			<input type="text" id="nIndex" class="op_w20" value="0" style="height:21px;">번째 인덱스로 
+			<button type="button" id="amove" class="btn">이동</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.[prefix]-view{overflow:hidden;position:relative;}
+	.[prefix]-container{width:100%;}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="mVertical" class='[prefix]-view'>
+		<div id="content" class="[prefix]-container">
+			<div id="layer1" class="[prefix]-ct"></div>
+			<div id="layer2" class="[prefix]-ct"></div>
+			<div id="layer3" class="[prefix]-ct"></div>
+		</div>
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oFlicking = new jindo.m.Flicking('mflick',{
+		bHorizontal : false
+	})
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CoreScroll.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Flicking.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oVFlick = new jindo.m.Flicking('mVertical',{
+	bHorizontal : false
+}).attach({
+	'afterFlicking' : function(oCustomeEvt){
+		var nIndex = oCustomeEvt.nContentsIndex*1;
+		addConsole('[flickingEnd] → ' + nIndex +'번째 컨텐츠');
+	}
+});
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	oVFlick.movePrev();
+},this).attach(jindo.$('aprev'),'click');
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	oVFlick.moveNext();
+},this).attach(jindo.$('anext'),'click');
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	var nIndex = jindo.$('nIndex').value;
+	
+	oVFlick.moveTo(nIndex*1, 0);
+	
+},this).attach(jindo.$('amove'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

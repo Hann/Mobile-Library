@@ -1,0 +1,189 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.tc-base{margin:10px;}
+
+.tc-tab-cont{display:table;position:relative;width:100%;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab.gif) repeat-x 0 100%}
+.tc-tab {float:left;margin-right:2px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_left.gif) no-repeat}
+.tc-taba {display:block;margin-left:3px;padding-right:8px;background:url(http://html.nhndesign.com/guidelines/uio/img/menu/bg_tab_right.gif) no-repeat 100% 0}
+.tc-taba a{color:#666;line-height:14px;text-decoration:none;display:block;padding:8px 13px 6px;}
+
+.tc-tab.tc-selected{background-position:0 -28px}
+.tc-tab.tc-selected span{background-position:100% -28px}
+.tc-tab.tc-selected span a{color:#333;font-weight:bold;letter-spacing:-1px;}
+
+.tc-panel-cont{display:table;width:100%;}
+.tc-panel {display:none;padding:10px; border:1px solid #ccc;background:#f4f4f4;color:#666;background:#F4F5F5;}
+.tc-selected {display:block}
+/* document */
+.strike {color:#0075C8;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="javascript:void(0)">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm" style="padding:0px;border:0px;">
+			<div id="tabComponent" class="tc-base" style="margin:0px;">		
+				<ul class="tc-tab-cont">
+					<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)" >뉴스홈</a></span></li>
+					<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">스포츠</a></span></li>
+					<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)" >부동산</a></span></li>
+					<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)" >증권</a></span></li>
+				</ul>		
+				<div class="tc-panel-cont">
+					<div class="tc-panel">
+					<strong style="color:#800080">뉴스홈</strong>
+					<br/><br/>오늘의 뉴스 입니다.
+					<br/><br/><strong style="color:#800080">Custom CSS</strong>로 구성된 탭입니다.
+					<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#800080">2</strong>입니다.
+					</div>
+					<div class="tc-panel">
+					<strong style="color:#006400">스포츠</strong>
+					<br/><br/>오늘의 스포츠 경기 결과 입니다.
+					<br/><br/><strong style="color:#006400">Custom CSS</strong>로 구성된 탭입니다.
+					<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#006400">2</strong>입니다.
+					</div>
+					<div class="tc-panel">
+					<strong style="color:#0000CD">부동산</strong>
+					<br/><br/>오늘의 부동산 시세 입니다.
+					<br/><br/><strong style="color:#0000CD">Custom CSS</strong>로 구성된 탭입니다.
+					<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#0000CD">2</strong>입니다.
+					</div>
+					<div class="tc-panel">
+					<strong style="color:#0000DF">증권</strong>
+					<br/><br/>오늘의 증 시세 입니다.
+					<br/><br/><strong style="color:#0000DF">Custom CSS</strong>로 구성된 탭입니다.
+					<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#0000DF">2</strong>입니다.
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br/>
+		<div class="lm">
+			<strong>* 옵션을 이용하여 다양한 탭을 구성할 수 있다.</strong><br/><br/>
+			<ul class="lst_type">
+				<li class="sub">
+					<p class="dot">초기 선택되는 탭은 <strong class="strike">nDefaultIndex</strong> 옵션을 통해 조절 할수 있다.</p>
+					<p class="dot">패널 슬라이드 효과는 <strong class="strike"> nPanelDuration</strong> 옵션을 통해 설정 할수 있다.<br/>
+						nPanelDuration이 0이면 슬라이드 효과가 발생하지 않는다.
+					</p>
+					<p class="dot">패널 슬라이드 효과를 사용할때는 <strong class="strike">nWidth, nHeight</strong> 옵션을 통해 패널의 크기를 조절 해야만 한다.<br>
+						nWidth가 0일 경우, width는 [sClassPrefix]panel-cont의 width(padding값은 제외)로 설정되고, 0 이상일 경우는 지정한 옵션값으로 설정된다.<br/>
+						nHeight는 지정한 옵션값으로 설정된다.
+					</p>
+				</li>					
+			</ul>
+		</div>		
+	</div>
+	<!--// Demo 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.tc-base{margin:10px;}
+
+	.tc-tab-cont{}
+	.tc-tab {}
+	.tc-taba {}
+	.tc-panel-cont{}
+	.tc-panel {display:none;}
+	.tc-selected {display:block}
+	/*includeCSSEnd*/	
+	
+	<!--includeHtml -->
+	<div id="tabComponent" class="tc_base">
+		<ul class="tc-tab-cont">
+			<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">뉴스홈</a></span></li>
+			<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">스포츠</a></span></li>
+			<li class="tc-tab"><span class="tc-taba"><a href="javascript:void(0)">부동산</a></span></li>
+		</ul>		
+		<div class="tc-panel-cont">
+			<div class="tc-panel">
+			<strong style="color:#800080">뉴스홈</strong>
+			<br/><br/>오늘의 뉴스 입니다.
+			<br/><br/><strong style="color:#800080">Custom CSS</strong>로 구성된 탭입니다.
+			<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#800080">2</strong>입니다.
+			</div>
+			<div class="tc-panel">
+			<strong style="color:#006400">스포츠</strong>
+			<br/><br/>오늘의 스포츠 경기 결과 입니다.
+			<br/><br/><strong style="color:#006400">Custom CSS</strong>로 구성된 탭입니다.
+			<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#006400">2</strong>입니다.
+			</div>
+			<div class="tc-panel">
+			<strong style="color:#0000CD">부동산</strong>
+			<br/><br/>오늘의 부동산 시세 입니다.
+			<br/><br/><strong style="color:#0000CD">Custom CSS</strong>로 구성된 탭입니다.
+			<br/>처음 로딩시 선택되는 탭의 인덱스는 <strong style="color:#0000CD">2</strong>입니다.
+			</div>
+		</div>
+	</div>
+	</div> 
+	<!--includeHtmlEnd -->
+	
+	/*includeScript*/
+	var oTab = new jindo.m.Tab("tabComponent", {
+		sClassPrefix 		: "tc-",
+		nDefaultIndex 		: 2,
+		nPanelDuration		: 500,
+		nHeight				: 120,
+		nWidth 				: 0
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CoreTab.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Tab.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	var oTab = new jindo.m.Tab("tabComponent", {
+		sClassPrefix 		: "tc-",
+		nDefaultIndex 		: 2,
+		nPanelDuration		: 500,
+		nHeight				: 120,
+		nWidth 				: 0
+	});
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

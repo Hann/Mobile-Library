@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+		<title>Jindo Mobile Component : jindo.m </title>
+		<link rel="stylesheet" type="text/css" href="../resource/css/common.css">
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="../resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+		<script type="text/javascript" src="../resource/syntaxhighlighter/scripts/shBrushXml.js"></script>
+		<script src="../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+		<script src="../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+		<script src="../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../resource/js/doc.js"></script>
+		<script>
+			SyntaxHighlighter.config.tagName = 'textarea';
+			SyntaxHighlighter.config.clipboardSwf = '../resource/syntaxhighlighter/scripts/clipboard.swf';
+			SyntaxHighlighter.all();
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="header">
+				<h1 class="h_h1"><a href="../index.html"><img src="../resource/img/logo_jindo.gif" width="58" height="44" alt="Jindo"/> <span class="h_tit">Mobile Component</span></a></h1>
+			</div>
+			<div id="container">
+				<div class="snb">
+					<!-- 왼쪽 메뉴 시작 -->
+								<div>
+				<h2 class="h_h2">RELEASE<a href="#" class="cls" id="btnRelease">close</a></h2>
+				<ul class="snb_lst"id="release">
+				<li><a href="../jindo.m/index.html">jindo.m <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Scroll/index.html">Scroll <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Flicking/index.html">Flicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.CircularFlicking/index.html">CircularFlicking <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.AjaxHistory/index.html">AjaxHistory <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.LayerManager/index.html">LayerManager</a></li>
+				<li><a href="../jindo.m.LayerEffect/index.html">LayerEffect <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.LayerPosition/index.html">LayerPosition</a></li>
+				<li><a href="../jindo.m.FloatingLayer/index.html">FloatingLayer</a></li>
+				<li><a href="../jindo.m.Dialog/index.html">Dialog </a></li>
+				<li><a href="../jindo.m.Accordion/index.html">Accordion </a></li>
+				<li><a href="../jindo.m.Tab/index.html">Tab</a></li>
+				<li><a href="../jindo.m.SlideTab/index.html">SlideTab </a></li>
+				<li><a href="../jindo.m.TextInput/index.html">TextInput </a></li>
+				<li><a href="../jindo.m.TextArea/index.html">TextArea </a></li>
+				<li><a href="../jindo.m.RadioButton/index.html">RadioButton</a></li>
+				<li><a href="../jindo.m.CheckBox/index.html">CheckBox</a></li>
+				<li><a href="../jindo.m.Datepicker/index.html">Datepicker <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Slider/index.html">Slider </a></li>
+				<li><a href="../jindo.m.ToggleSlider/index.html">ToggleSlider <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.MoreContentButton/index.html">MoreContentButton </a></li>
+				<li><a href="../jindo.m.PageNavigation/index.html">PageNavigation </a></li>
+				<li><a href="../jindo.m.Touch/index.html">Touch </a></li>
+				<li><a href="../jindo.m.Transition/index.html">Transition <img src="../resource/img/e.gif" width="1" height="1" alt="update" class="update"/></a></li>
+				<li><a href="../jindo.m.Validation/index.html">Validation </a></li>
+				<li><a href="../jindo.m.ScrollEnd/index.html">ScrollEnd</a></li>
+				<li><a href="../jindo.m.Loading/index.html">Loading <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li><a href="../jindo.m.PreventClickEvent/index.html">PreventClickEvent <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li><a href="../jindo.m.DragArea/index.html">DragArea <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				<li style="margin-bottom:8px;"><a href="../jindo.m.DropArea/index.html">DropArea <img src="../resource/img/e.gif" width="1" height="1" alt="new" class="new"/></a></li>
+				</ul>
+			</div>
+			<div class="height">
+				<h2 class="h_h2">COMING SOON<a href="#" class="cls opn" id="btnComingSoon">opn</a></h2>
+				<ul class="snb_lst txt_gray" id="comingSoon" style="display:none">
+	  			<li><a href="javascript:void(0)">IndexScroll</a></li>
+	            <li><a href="javascript:void(0)">Selectbox</a></li>
+	            <li><a href="javascript:void(0)">MultiTouch</a></li>
+	            <li><a href="javascript:void(0)">Chart</a></li>
+	            <li style="margin-bottom:8px;"><a href="javascript:void(0)">UI Template</a></li>
+	        	</ul>
+			</div>
+
+				
+					<!-- 왼쪽 메뉴 끝 -->
+				</div>
+				<div id="content">
+					<div class="section">
+						<div class="cont_lft">
+							<h3 class="h_cont">jindo.m</h3>
+							<p class="p_txt2">
+								<span>Version : 1.1.0</span>
+								<br />
+								진도모바일 컴포넌트의 기본 네임스페이스인 동시에, static 객체이다.
+							</p>
+						</div>
+						<!--QR코드 -->
+						<div id='QRView' class="qr_code"></div>
+					</div>
+					<div class="section2">
+						<!-- 상세 설명 --><h3>Description</h3>
+                    <div class="t1">
+                        jindo.m은 진도모바일 컴포넌트의 네임스페이스이다.
+						
+						<h4>특징</h4>
+                        <ul class="t2">
+                            <li>
+                            	모든 진도모바일 컴포넌트는 jindo.m에 존재한다.
+                            </li>
+                            <li>
+                                공통적으로 사용하는 메소드와 이벤트를 jindo.m에서 제공한다.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 커스텀 이벤트 --><h3>Custom Event</h3>
+                    <div class="t1">
+                        진도 모바일 컴포넌트는 특정동작시점에 원하는 동작을 수행시킬 수 있도록 다양한 커스텀 이벤트를 제공한다.
+                        <br/>
+                        각 컴포넌트의 attach, detach 메소드를 통해, 커스텀 이벤트를 등록하고, 해제할수 있다.
+                        <br/>
+                        <br/>
+                        관련 내용은<a href="http://jindo.dev.naver.com/docs/jindo-component/1.0.2/doc/jindo.Component/index.html" target="_blank_">jindo.Component</a>의 attach,detach 메소드 사용법을 참조하기 바란다.
+                        <h4>종류 및 발생순서</h4>
+                        <ul class="t2">
+                            <li>
+                                진도 모바일 컴포넌트에서는 특정동작 시점의 전과 후에 각각의 커스텀 이벤트를 제공한다.
+                            </li>
+                            <li>
+                                발생하는 이벤트 순서는 "beforeEvent 커스텀 이벤트 => 동작시점 => event 커스텀 이벤트" 순으로 발생한다.
+                            </li>
+                             <li>
+                                꼭! 전, 후의 커스텀 이벤트를 모두 제공하지는 않는다. 동작 전 커스텀 이벤트만 제공할수도 있고, 동작 후 커스텀 이벤트만 제공할수도 있다
+                            </li>
+                    </div>
+                    <br/>
+                    <div class="t1">
+                        <table class="option" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Desc
+                                </th>
+                                <th>
+                                    Example
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    beforeEvent
+                                </td>
+                                <td>
+                                    동작시점 발생 전에 발생하는 커스텀 이벤트
+                                </td>
+                                <td>
+                                    beforePos : 포지션 잡기 전에 발생
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">
+                                    event
+                                </td>
+                                <td>
+                                    동작시점 발생 후에 발생하는 커스텀 이벤트
+                                </td>
+                                <td>
+                                    pos : 포지션 잡은 후에 발생
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+					
+					<!-- Method -->
+						<!-- Method -->
+	<h3>Method</h3>
+	<div class="t1">
+		<table class="method" cellpadding="0" cellspacing="0">
+			<tr>
+				<th>Name</th>
+				<th>Desc</th>
+			</tr>
+			
+			<!-- Contstuctor Summary -->
+			
+			
+			<!-- static method -->
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="attachTransitionEnd"></a>attachTransitionEnd
+					</td>
+					<td>
+						TransitionEnd 이벤트 bind&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">attachTransitionEnd</strong>(element, fHandlerToBind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HTMLElement}</span> <strong>element</strong>
+									
+									: attach할 엘리먼트
+								</li>
+							
+								<li>
+									<span>{Function}</span> <strong>fHandlerToBind</strong>
+									
+									: attach할 함수
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;"> jindo.m.attachTransitionEnd(el, function() { alert("attach"); }); // el에 transitionEnd 이벤트를 attach한다. jindo.m.detachTransitionEnd(el, function() { alert("detach"); }); // el에 transitionEnd 이벤트를 detach한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="bindPageshow"></a>bindPageshow
+					</td>
+					<td>
+						pageshow호출, 함수 bind&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">bindPageshow</strong>(fHandlerToBind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Object}</span> <strong>fHandlerToBind</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var f = jindo.$Fn(this.setSize, this).bind();// bind함jindo.m.bindPageshow(f);// unbind함jindo.m.unbindPageshow(f);</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="bindRotate"></a>bindRotate
+					</td>
+					<td>
+						모바일 기기 회전시, 적용할 함수를 bind 함&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">bindRotate</strong>(fHandlerToBind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Object}</span> <strong>fHandlerToBind</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var f = jindo.$Fn(this.setSize, this).bind();// bind함jindo.m.bindRotate(f);// unbind함jindo.m.unbindRotate(f);</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="detachTransitionEnd"></a>detachTransitionEnd
+					</td>
+					<td>
+						TransitionEnd 이벤트 unbind&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">detachTransitionEnd</strong>(element, fHandlerToUnbind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HTMLElement}</span> <strong>element</strong>
+									
+									: dettach할 엘리먼트
+								</li>
+							
+								<li>
+									<span>{Function}</span> <strong>fHandlerToUnbind</strong>
+									
+									: dettach할 함수
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;"> jindo.m.attachTransitionEnd(el, function() { alert("attach"); }); // el에 transitionEnd 이벤트를 attach한다. jindo.m.detachTransitionEnd(el, function() { alert("detach"); }); // el에 transitionEnd 이벤트를 detach한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getClosest"></a>getClosest
+					</td>
+					<td>
+						자신을 포함하여 부모노드중에 셀렉터에 해당하는 가장 가까운 엘리먼트를 구함&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">HTMLElement </span>
+								
+						
+						<strong class="method">getClosest</strong>(sSelector, elBaseElement)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{String}</span> <strong>sSelector</strong>
+									
+									: CSS클래스명 또는 태그명
+								</li>
+							
+								<li>
+									<span>{HTMLElement}</span> <strong>elBaseElement</strong>
+									
+									: 기준이 되는 엘리먼트
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">HTMLElement </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;"> jindo.m.getClosest("cssName", elParent);   // elParent하위에 cssName 클래스명이 아닌 첫번째 Element를 반환한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getCssOffset"></a>getCssOffset
+					</td>
+					<td>
+						현재 스크롤 Element의 offet을 구한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">HashTable </span>
+								
+						
+						<strong class="method">getCssOffset</strong>(element)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{HTMLElement}</span> <strong>element</strong>
+									
+									: ComputedStyle 값을 이용하여 offset을 얻는 함수
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">HashTable </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var oObject=jindo.m.getCssOffset(el); // CSSOffset을 반환한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getCssPrefix"></a>getCssPrefix
+					</td>
+					<td>
+						브라우저 CssPrefix를 얻는 함수&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">String </span>
+								
+						
+						<strong class="method">getCssPrefix</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">String </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">jindo.m.getCssPrefix(); // 브라우저별 prefix를 반환한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getDeviceInfo"></a>getDeviceInfo
+					</td>
+					<td>
+						브라우저 정보와 버전 정보를 제공한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">HashTable </span>
+								
+						
+						<strong class="method">getDeviceInfo</strong>()
+						
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">HashTable </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;"> jindo.m.getDeviceInfo().android     //안드로이드 여부 jindo.m.getDeviceInfo().iphone      //아이폰 여부 jindo.m.getDeviceInfo().ipad        //아이패드 여부 jindo.m.getDeviceInfo().galaxyTab   //갤럭시탭 여부 jindo.m.getDeviceInfo().galaxyTab2  //갤럭시탭2 여부 jindo.m.getDeviceInfo().galaxyK     //갤럭시K 여부 jindo.m.getDeviceInfo().galaxyU     //갤럭시U 여부 jindo.m.getDeviceInfo().galaxyS     //갤럭시S 여부 jindo.m.getDeviceInfo().galaxyS2    //갤럭시S2 여부 jindo.m.getDeviceInfo().version     //안드로이드, 아이폰시 버젼정보 제공 jindo.m.getDeviceInfo().bInapp      //인앱여부, true- 인앱, false - 웹브라우저 혹은 알수없는 경우 jindo.m.name                        //현재 단말기기 정보제공</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">oyang2, sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="getNodeElement"></a>getNodeElement
+					</td>
+					<td>
+						TextNode를 제외한 상위노드를 반환한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+						
+							<span class="return">HTMLElement </span>
+								
+						
+						<strong class="method">getNodeElement</strong>(el)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<strong>el</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+						
+							<h5>Return</h5>
+							<span class="t1">HTMLElement </span>
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var elParent=jindo.m.getNodeElement(el); // TextNode를 제외한 상위노드를 반환한다.</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">oyang2<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="isVertical"></a>isVertical
+					</td>
+					<td>
+						현재 모바일기기의 가로,세로 여부를 반환한다.&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">isVertical</strong>()
+						
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">jindo.m.isVertical; // 수직여부 반환</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="unbindPageshow"></a>unbindPageshow
+					</td>
+					<td>
+						pageshow호출, 함수 unbind&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">unbindPageshow</strong>(fHandlerToBind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Object}</span> <strong>fHandlerToBind</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var f = jindo.$Fn(this.setSize, this).bind();// bind함jindo.m.bindPageshow(f);// unbind함jindo.m.unbindPageshow(f);</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+			
+			<!-- instance method -->
+			
+				<tr class="title">
+					<td class="name">
+						<a name="unbindRotate"></a>unbindRotate
+					</td>
+					<td>
+						모바일 기기 회전시, 적용할 함수를 unbind 함&nbsp;
+					</td>
+				</tr>
+			
+			<!-- deprecated method -->
+			
+				<tr class="desc">
+					<td><br></td>
+					<td>
+								
+						
+							<span class="return">void </span>
+						
+						<strong class="method">unbindRotate</strong>(fHandlerToUnbind)
+						
+						
+							<h5>Parameters</h5>
+							<ul class="t1">
+							
+								<li>
+									<span>{Object}</span> <strong>fHandlerToUnbind</strong>
+									
+									
+								</li>
+							
+							</ul>
+						
+						
+								
+						
+						
+			
+						
+						
+						
+						
+						
+							
+							<h5>Example 1</h5>
+							<textarea class="brush: js;">var f = jindo.$Fn(this.setSize, this).bind();// bind함jindo.m.bindRotate(f);// unbind함jindo.m.unbindRotate(f);</textarea>
+							
+						
+						
+						
+			
+						
+							<h5>Author</h5>
+							<p class="t1">sculove<p>
+						
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<address class="cr">
+					Copyright © <a href="#" class="nhn">NHN Corp.</a> MobileAjax Team All Rights Reserved.
+				</address>
+			</div>
+		</div>
+	</body>
+</html>

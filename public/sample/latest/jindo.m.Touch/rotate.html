@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<title>jindo</title>
+<!-- SamplePage 기본 CSS -->
+<link rel="stylesheet" type="text/css" href="../css/w.css" />
+<style>
+
+</style>
+
+<script type="text/javascript">
+	var sAgent =  navigator.userAgent;
+	if (sAgent.indexOf("WebKit") < 0) {	
+		window.onerror = function(){
+			return true;
+		}
+	}
+</script>
+<!-- 기본 스크립트 -->
+<script src="../../../external/jindo/latest/jindo.all.ns.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Component.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.UIComponent.js" charset="utf-8"></script>
+<script src="../../../external/jindo/latest/jindo.Canvas.js" charset="utf-8"></script>
+<script src="../../../external/qrCode/jindo.QRCode.debug.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.js" charset="utf-8"></script>
+<script src="../js/common.js" charset="utf-8"></script>
+
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="../../../doc/resource/syntaxhighlighter/style/shThemeEclipse.css"/>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+<script type="text/javascript" src="../../../doc/resource/syntaxhighlighter/scripts/shBrushXml.js"></script> 
+
+<script type="text/javascript">
+	SyntaxHighlighter.config.tagName = 'textarea';
+	SyntaxHighlighter.config.clipboardSwf = '../../../doc/resource/syntaxhighlighter/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+<!--// 기본 스크립트 끝 -->
+</head>
+<body>
+
+
+<!-- Header -->
+<div id="hd">
+    <a href="#" class="prev _prev">
+        <span class="hc">이전</span>
+    </a>
+    <div class="name">
+    	<h1><a href="../index.html">Jindo Mobile Component<span class="beta">beta</span></a></h1>
+    </div>
+    <!-- QR코드 동적생성 -->
+    <div class="qr">
+    	<a href="#" id='qr_btn' class="btop">
+        	<span class="hc">QR코트펼치기</span>
+        </a>
+    </div>
+    <div id="qr_layer" class="qrcode" style="display:none;z-index:20;">
+    	<div id='QRView' style="position:relative;padding-top:29px;padding-left:18px;"></div>
+    </div>
+    <!--// QR코드  동적생성 -->
+</div>
+<!--// Header -->
+<div id="browser_notice" class="ct" style="display:none;margin:5px 2px 0;overflow:hidden;"><div class="demo" style="text-align:left;padding-left:10px;font-size:13px;color:#ba0000;">※ 현재 Sample 보기에 적합하지 않은 브라우저를 사용중입니다. "크롬" 이나 "사파리" 브라우저를 이용해주시기 바랍니다.</div></div>
+<style>
+/* 개별 Sample 관련 CSS */
+body{-webkit-user-select:none;}
+.check{margin-top: -2px;vertical-align:middle;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">jindo.m.Touch</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+		        <div class="_view_code sc_info" style="display:none;">
+		       		<div>
+						<h2 class="h2_code">CSS</h2>
+						<!-- 마크업 구조 -->
+						<textarea class="brush: css;">
+	</textarea>	
+					</div>
+					<div>
+						<h2 class="h2_code">HTML</h2>
+						<textarea class="brush: xml;">
+	<div id="layer1"></div>
+	</textarea>
+					</div>
+					<div>
+						<h2 class="h2_code">SCRIPT</h2>
+						<textarea class="brush: javascript;">
+	var oTouch = new jindo.m.Touch('layer1',{
+		nMoveThreshold : 0	
+	});
+	oTouch.attach({
+		'touchMove' : function(oCustomEvt){
+			oCustomEvt.oEvent.stop();
+			if(oCustomEvt.sMoveType && (oCustomEvt.sMoveType.indexOf('rotate') > -1)) {
+				if (typeof oCustomEvt.nScale !== 'undefined') {
+					rotate(oCustomEvt.nRotation);					
+				}
+			}
+			
+		},		
+		'rotate' : function(oCustomEvt){
+			// touchend 이후에  rotate 작업일 경우
+		}
+	});
+	
+	function rotate(angle){
+		if (typeof angle !== 'undefined') {
+			jindo.$('layer1').style.webkitTransform = 'rotate('+angle+'deg)';	
+		}
+	}
+	</textarea>
+					</div>
+		        </div>
+		  </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div id="layer1" style="margin:10px 0;height:150px;background-color:#0080c0;text-align:center;font-size:.85em;">
+			<p style="padding-top:20px;"> 영역 내에서  <span style="color:white;font-weight:bold;">멀티터치로 rotate</span> 작업을 진행할 수 있습니다. </p>
+			<p style="padding-top:5px;">이 영역내에서는 스크롤이 되지 않습니다.</p>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			rotate 를  판단하는 최소 angle  <input type="text" id="rotate" class="op_w50" value="5">&nbsp;&nbsp;<button type="button" id="apply" class="btn">적용</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer1"></div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oTouch = new jindo.m.Touch('layer1',{
+		nMoveThreshold : 0	
+	});
+	oTouch.attach({
+		'touchMove' : function(oCustomEvt){
+			oCustomEvt.oEvent.stop();
+			if(oCustomEvt.sMoveType && (oCustomEvt.sMoveType.indexOf('rotate') > -1)) {
+				if (typeof oCustomEvt.nScale !== 'undefined') {
+					rotate(oCustomEvt.nRotation);					
+				}
+			}
+			
+		},		
+		'rotate' : function(oCustomEvt){
+			// touchend 이후에  rotate 작업일 경우
+		}
+	});
+	
+	function rotate(angle){
+		if (typeof angle !== 'undefined') {
+			jindo.$('layer1').style.webkitTransform = 'rotate('+angle+'deg)';	
+		}
+	}
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+	
+var elBody = document.body;
+var oTouch = new jindo.m.Touch('layer1',{
+	nMoveThreshold : 0	
+});
+
+function rotate(angle){
+	if (typeof angle !== 'undefined') {
+		jindo.$('layer1').style.webkitTransform = 'rotate('+angle+'deg)';	
+	}
+}
+
+oTouch.attach({		
+	'touchMove' : function(oCustomEvt){
+		oCustomEvt.oEvent.stop();
+		if(oCustomEvt.sMoveType && (oCustomEvt.sMoveType.indexOf('rotate') > -1)) {
+			if (typeof oCustomEvt.nScale !== 'undefined') {
+				rotate(oCustomEvt.nRotation);
+				addConsole('[touchMove]: '+ oCustomEvt.sMoveType + " →  "+oCustomEvt.nRotation);
+			}
+		}
+		
+	},		
+	'rotate' : function(oCustomEvt){
+		if (oCustomEvt.sMoveType && (oCustomEvt.sMoveType.indexOf('rotate') > -1)) {
+			addConsole('rotate → ' + oCustomEvt.nRotation);
+		}
+	}
+});
+//apply button	
+function apply(){
+	oTouch.option('nRotateThreshold', parseFloat(jindo.$('rotate').value, 10));
+	
+	
+	addConsole('적용 되었습니다');
+}
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	apply();
+}, this).attach(jindo.$('apply'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+</body>
+</html>

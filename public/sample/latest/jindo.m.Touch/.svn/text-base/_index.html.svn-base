@@ -1,0 +1,28 @@
+{+include("index_header.html")+}
+
+<div id="ct">
+    <h2>{=COMPONENT}</h2>
+    <div class="info">
+        <p>기준 레이어에서의 사용자 터치 움직임을 분석하여 scroll, tap 등의 동작을 분석하는 컴포넌트</p>
+    </div>
+
+    <div class="shdo">
+        <div class="cpt">
+            <span class="lft"></span>
+            <h3>Sample</h3>
+            <span class="rgt"></span>
+        </div>
+
+        <ul class="lst">
+        <li><a href="tap.html">tap 예제</a></li>
+        <li><a href="verticalScroll.html">수직방향  scroll 예제</a></li>
+        <li><a href="horizontalScroll.html">수평방향 scroll 예제</a></li>
+        <li><a href="diagonalScroll.html">대각선  scroll 예제</a></li>
+		<li><a href="pinch.html">pinch 예제 (iOS,안드로이드 4.0 이상)</a></li>
+		<li><a href="rotate.html">rotate 예제 (iOS,안드로이드 4.0 이상)</a></li>
+		<li><a href="pinch-rotate.html">pinch-rotate 예제 (iOS,안드로이드 4.0 이상)</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

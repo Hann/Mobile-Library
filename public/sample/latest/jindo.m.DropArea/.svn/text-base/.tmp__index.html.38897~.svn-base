@@ -1,0 +1,24 @@
+{+include("index_header.html")+}
+
+<div id="ct">
+    <h2>{=COMPONENT}</h2>
+    <div class="info">
+        <p>기준 엘리먼트의 자식 엘리먼트 중 특정 클래스명을 가진 모든 엘리먼트를 Drop 가능하게 하는 컴포넌트</p>
+    </div>
+
+    <div class="shdo">
+        <div class="cpt">
+            <span class="lft"></span>
+            <h3>Sample</h3>
+            <span class="rgt"></span>
+        </div>
+
+        <ul class="lst">
+        <li><a href="over.html">기본예제</a></li>
+        <li><a href="multi.html">중첩 드롭예제</a></li>
+        <li><a href="iconSort.html">아이콘 위치바꾸기 예제</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

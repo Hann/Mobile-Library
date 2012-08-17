@@ -1,0 +1,206 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.frb-v-radiobtn-cont{overflow:hidden;border:1px solid #ccc}
+.frb-v-radiobtn-on{overflow:hidden;border:0;background:#85bae4;font-weight:bold;color:#FFF !important;text-decoration:none;cursor:pointer;outline:0 none;}
+.frb-v-radiobtn-disable{opacity:.3;cursor: default;}
+
+.frb-v-radiobtn-unit{position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.frb-v-radiobtn-unit:last-child{border-bottom:0}
+.frb-v-radiobtn{position:absolute;top:7px;left:10px;margin:0}
+.frb-v-radiobtn-label{display:block;position:relative;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer;}
+
+.frb-h-radiobtn-on{background:#7e608f !important;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none;}
+.frb-h-radiobtn-disable{opacity:.3;cursor: default;}
+
+.frb-h-radiobtn-cont:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.frb-h-radiobtn-unit{float:left;position:relative;margin:0;padding:0;list-style:none;border:1px solid #CCC;border-right:none;background:#eee; font-weight:bold;color:#444;text-decoration:none;cursor:pointer;}
+.frb-h-radiobtn-unit:last-child{border-right:1px solid #CCC}
+.frb-h-radiobtn{display:none;}
+.frb-h-radiobtn-label{display:block;position:relative;margin:0;padding:10px 30px;font-size:1em;font-family:Helvetica,Arial,sans-serif;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div id="radioBtn_v" style="padding:10px 0 0 0;font-size:.8em;">
+			<form action="#">				
+				<ul class="frb-v-radiobtn-cont">
+					<li class="frb-v-radiobtn-unit">
+						<input type="radio" name="radio_name" checked="checked" id="fruit1" value="Apple" class="frb-v-radiobtn">
+						<label for="fruit1" class="frb-v-radiobtn-label">Apple</label>
+					</li>
+					<li class="frb-v-radiobtn-unit">
+						<input type="radio" name="radio_name" id="fruit2" value="Banana" class="frb-v-radiobtn">
+						<label for="fruit2" class="frb-v-radiobtn-label">Banana</label>
+					</li>
+					<li class="frb-v-radiobtn-unit">
+						<input type="radio" name="radio_name" id="fruit3" value="Orange" class="frb-v-radiobtn">
+						<label for="fruit3" class="frb-v-radiobtn-label">Orange</label>
+					</li>
+					<li class="frb-v-radiobtn-unit">
+						<input type="radio" name="radio_name" id="fruit4" value="Lemon" class="frb-v-radiobtn">
+						<label for="fruit4" class="frb-v-radiobtn-label">Lemon</label>
+					</li>
+					<li class="frb-v-radiobtn-unit">
+						<input type="radio" name="radio_name" id="fruit5" value="Grape" class="frb-v-radiobtn">
+						<label for="fruit5" class="frb-v-radiobtn-label">Grape</label>
+					</li>
+				</ul>
+			</form>
+		</div>
+	
+		<div class="lm">
+			1. 세로형 RadioButton
+			<p style="color:red;font-size:.9em;margin-left:5px;">&lt;적용옵션&gt;</p>
+			<p class="sub_box">
+			{<br/>
+			<span class="tab1">sType:"v",</span><br/>
+			<span class="tab1">sClassPrefix: "frb-v-"</span><br/>			
+			}	
+			</p>
+		</div>		
+	
+		<div id="radioBtn_h" style="padding:0 10px;font-size:.8em;">
+			<form action="#">
+				<fieldset>
+					<legend></legend>
+					<ul class="frb-h-radiobtn-cont">
+					<li class="frb-h-radiobtn-unit">
+						<input type="radio" name="rtype" id="list" value="List" class="frb-h-radiobtn">
+						<label for="list" class="frb-h-radiobtn-label">List</label>
+					</li>
+					<li class="frb-h-radiobtn-unit">
+						<input type="radio" name="rtype" id="grid" value="Grid" class="frb-h-radiobtn" checked>
+						<label for="grid" class="frb-h-radiobtn-label">Grid</label>
+					</li>
+					<li class="frb-h-radiobtn-unit">
+						<input type="radio" name="rtype" id="icon" value="Icon" class="frb-h-radiobtn">
+						<label for="icon" class="frb-h-radiobtn-label">Icon</label>
+					</li>
+					</ul>
+				</fieldset>
+			</form>
+		</div>
+		<div style="clear: both;"></div>
+	
+		<div class="lm">
+			2. 가로형 RadioButton
+			<p style="color:red;font-size:.9em;margin-left:5px;">&lt;적용옵션&gt;</p>
+			<p class="sub_box">
+			{<br/>
+			<span class="tab1">sType:"h",</span><br/>
+			<span class="tab1">sClassPrefix: "frb-h-"</span><br/>			
+			}	
+			</p>
+		</div>		
+	</div>
+	<!--// Demo 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/
+	.frb-v-radiobtn-on{background:#FF729A;font-weight:bold;color:#FFF;}
+	.frb-v-radiobtn-disable{opacity:.3;cursor: default;}
+	
+	.frb-h-radiobtn-on{background:#FF729A;font-weight:bold;color:#FFF;}
+	.frb-h-radiobtn-disable{opacity:.3;cursor: default;}	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<!--  세로형 RadioButton -->
+	</li>... 생략 ...<li>
+	<div id="radioBtn_v">
+		<ul class="frb-v-radiobtn-cont">
+			<li class="frb-v-radiobtn-unit">
+				<input type="radio" name="radio_name" checked="checked" id="fruit1" value="Apple" class="frb-v-radiobtn">
+				<label for="fruit1" class="frb-v-radiobtn-label">Apple</label>
+			</li>
+			<li>... 생략 ...</li>
+			<li>... 생략 ...</li>
+			<li>... 생략 ...</li>
+		</ul>
+	</div>
+	
+	<!--  가로형 RadioButton -->
+	<div id="radioBtn_v">
+		<ul class="frb-h-radiobtn-cont">
+		<li class="frb-h-radiobtn-unit">
+			<input type="radio" name="rtype" id="list" value="List" class="frb-h-radiobtn">
+			<label for="list" class="frb-h-radiobtn-label">List</label>
+		</li>
+		<li>... 생략 ...</li>
+		<li>... 생략 ...</li>
+		</ul>
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	// 세로형 RadioButton 초기화
+	var oRadioButtonV = new jindo.m.RadioButton("radioBtn_v" , {
+		sType:"v", 
+		sClassPrefix: "frb-v-"
+	});
+	
+	// 가로형 RadioButton 초기화
+	var oRadioButtonH = new jindo.m.RadioButton("radioBtn_h" , {
+		sType:"h", 
+		sClassPrefix: "frb-h-"
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.RadioButton.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oRadioButtonV = new jindo.m.RadioButton("radioBtn_v" , {
+	sType:"v", 
+	sClassPrefix: "frb-v-"
+});
+
+var oRadioButtonH = new jindo.m.RadioButton("radioBtn_h" , {
+	sType:"h", 
+	sClassPrefix: "frb-h-"
+});
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

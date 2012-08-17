@@ -1,0 +1,186 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.fcb-checkbox-on{border:0;background:#ff9999;font-weight:bold;color:#FFF;text-decoration:none;cursor:pointer;outline:0 none;}
+.fcb-checkbox-disable{opacity:.3;cursor: default;}
+.fcb-checkbox-unit {position:relative;margin:0;padding:.7em 0 .7em 30px;border-bottom:1px solid #ccc;list-style:none}
+.fcb-checkbox-unit:last-child{border-bottom:0;}
+.fcb-checkbox-cont{overflow:hidden;border:1px solid #ccc;}
+.fcb-checkbox{position:absolute;top:8px;right:10px;margin:0}
+.fcb-checkbox-label{display:block;position:relative;left:-10px;margin:0;font-size:1em;font-family:Helvetica,Arial,sans-serif;font-weight:bold;color:#444;text-decoration:none;cursor:pointer;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">customEvent 사용</div>
+	</div>
+	
+	<div id="demo">
+		<div id="checkbox" style="padding:0 0 10px;font-size:.8em;">			
+			<ul class="fcb-checkbox-cont">
+				<li class="fcb-checkbox-unit">
+					<input type="checkbox" name="check1" id="news" value="뉴스" class="fcb-checkbox" checked>				
+					<label for="check1" class=fcb-checkbox-label>뉴스</label>
+				</li>
+				<li class="fcb-checkbox-unit" id="weatherUnit">
+					<input type="checkbox" name="check2" id="weather" value="날씨" class="fcb-checkbox">
+					<label for="check2" class="fcb-checkbox-label">날씨</label>
+				</li>
+				<li class="fcb-checkbox-unit">
+					<input type="checkbox" name="check3" id="sports" value="스포츠" class="fcb-checkbox">
+					<label for="check3" class="fcb-checkbox-label">스포츠</label>
+				</li>
+				<li class="fcb-checkbox-unit" id="stockUnit">
+					<input type="checkbox" name="check4" id="stock" value="증권" class="fcb-checkbox">
+					<label for="check4" class="fcb-checkbox-label">증권</label>
+				</li>
+				<li class="fcb-checkbox-unit">
+					<input type="checkbox" name="check5" id="entertain" value="연예" class="fcb-checkbox">
+					<label for="check5" class="fcb-checkbox-label">연예</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op" style="line-height: 25px;">
+			<button type="button" id="chkValue" class="btn">선택한 값 얻어오기</button>&nbsp;&nbsp;선택 한 값 : <input type="text" id="viewValue" class="op_w20" style="width:150px;font-size:12px;"><br>
+			<button type="button" id="chkAllEnable" class="btn">모두 활성화</button>&nbsp;&nbsp;<button type="button" id="chkAllDisable" class="btn">모두 비활성화</button><br>
+			<button type="button" id="chkAllChecked" class="btn">모두 선택</button>&nbsp;&nbsp;<button type="button" id="chkAllUnChecked" class="btn">모두 선택 해제</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+	
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.[prefix]checkbox-on{background:#44AF50;font-weight:bold;color:#FFF;outline:0 none;}
+	.[prefix]checkbox-disable{opacity:.3;cursor:default;}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="checkbox">
+		<ul class="[prefix]checkbox-cont">
+		<li class="[prefix]checkbox-unit" id="check1Unit">
+			<input type="checkbox" name="check1" id="news" value="뉴스" class="[prefix]checkbox">
+			<label for="check1" class=[prefix]checkbox-label>뉴스</label>
+		</li>
+		<li>... 생략 ...</li>
+		<li>... 생략 ...</li>
+		</ul>
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oCheckbox = new jindo.m.CheckBox("checkbox");
+	oCheckbox.attach({
+		checked : function(we) {... 생략 ...},
+		unchecked : function(we) {... 생략 ...},
+		enable : function(we) {... 생략 ...},
+		disable : function(we) {... 생략 ...}
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CheckRadioCore.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.CheckBox.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oCheckbox = new jindo.m.CheckBox("checkbox").attach({
+	"checked" : function(we){
+		addConsole(we.elCheckBox.value + "선택");
+	},
+	"unchecked" : function(we){
+		addConsole(we.elCheckBox.value + "선택 해제");
+	},
+	"enable" : function(we){
+		var aNames = [];
+		var aElList = we.aCheckBoxList;
+		for(var i = 0 ; i < aElList.length ; i++){
+			aNames.push(aElList[i].value);
+		}
+		
+		addConsole(aNames.join() + " 활성화");
+	},
+	"disable" : function(we){
+		var aNames = [];
+		var aElList = we.aCheckBoxList;
+		for(var i = 0 ; i < aElList.length ; i++){
+			aNames.push(aElList[i].value);
+		}
+		
+		addConsole(aNames.join() + " 비활성화");
+	}
+});
+
+
+jindo.$Fn(function(){
+	jindo.$("viewValue").value = oCheckbox.getCheckedValue().join();
+},this).attach(jindo.$("chkValue"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.enable();
+},this).attach(jindo.$("chkAllEnable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.disable();
+},this).attach(jindo.$("chkAllDisable"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(true);
+},this).attach(jindo.$("chkAllChecked"), "click");
+
+jindo.$Fn(function(){
+	oCheckbox.setCheckedBox(false);
+},this).attach(jindo.$("chkAllUnChecked"), "click");
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

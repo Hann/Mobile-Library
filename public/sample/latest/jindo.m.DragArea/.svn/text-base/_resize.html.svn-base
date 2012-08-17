@@ -1,0 +1,169 @@
+
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+#baseLayer{position:relative;height:300px;}
+.drag-dragging{background-color:#CCCCCC;height:20px;width:100%;font-size:12px;position:absolute;height:20px;text-align:center;padding-top:7px;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div id="baseLayer">			
+			<div style="position:relative;">
+				<div style="background-color:#ff80c0;height:50px;padding:10px;" id="content">
+					아래 회색영역의 드래그 부분을 잡고 늘리면 이 영역의 높이가 높아져요.<br>
+					최소 50픽셀 최대  250픽셀까지 늘어납니다.
+				
+				</div>
+				<div class="drag-dragging" id="drag">이 부분을 잡고 움직여 보세요</div> 
+			</div>
+			
+		</div>
+		
+		<div class="lm" style="margin-top:50px;"> 
+			<span class="keyword">"beforeDrag"</span> 커스텀 이벤트에서  드래깅을 막는 예제.
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+		
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="baseLayer">			
+		<div style="position:relative;">
+			<div style="background-color:#ff80c0;height:50px;padding:10px;" id="content">
+					아래 회색영역의 드래그 부분을 잡고 늘리면 이 영역의 높이가 높아져요.<br>
+					최소 50픽셀 최대  250픽셀까지 늘어납니다.
+				
+			</div>
+			<div class="drag-dragging" id="drag">이 부분을 잡고 움직여 보세요</div> 
+		</div>
+			
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oDrag = new jindo.m.DragArea(jindo.$('baseLayer'),{
+		bFlowOut : true
+	});
+	
+	var welHandle = jindo.$Element('drag');
+	var welContent = jindo.$Element('content');
+	var nContentTop = welContent.offset().top;
+	
+	var  htInitOffset = welHandle.offset();
+	var nContentMax = nContentTop + 250 + welHandle.height();
+	
+	oDrag.attach({
+		'beforeDrag' : function(oCustomEvent){
+			oCustomEvent.nX = htInitOffset.left;
+			if(oCustomEvent.nY < htInitOffset.top){
+				oCustomEvent.nY = htInitOffset.top; 
+			}else if(oCustomEvent.nY > nContentMax){
+				oCustomEvent.nY = nContentMax;
+			}		
+		}
+	});
+
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.DragArea.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oDrag = new jindo.m.DragArea(jindo.$('baseLayer'),{
+	bFlowOut : true
+});
+var sMinH = 50;
+var welHandle = jindo.$Element('drag');
+var welContent = jindo.$Element('content');
+
+var nContentTop = welContent.offset().top;
+var nContentMax = nContentTop + 250 + welHandle.height();
+
+var  htInitOffset = welHandle.offset();
+
+oDrag.attach({
+	'handleDown' : function(oCustomEvent){
+		
+		addConsole('[hadnleDown]');
+	},
+	
+	'beforeDrag' : function(oCustomEvent){
+		oCustomEvent.nX = htInitOffset.left;
+		if(oCustomEvent.nY < htInitOffset.top){
+			oCustomEvent.nY = htInitOffset.top; 
+			addConsole('[beforeDrag] 에서 50픽셀 이하로 드래그 안되게 막음');
+		}else if(oCustomEvent.nY > nContentMax){
+			oCustomEvent.nY = nContentMax;
+			addConsole('[beforeDrag] 에서 250픽셀 이상으로 드래그 안되게 막음');
+		}		
+		
+	},
+	
+	'drag' : function(oCustomEvent){
+		addConsole('[drag]');
+		welContent.height(oCustomEvent.nY - nContentTop);
+		
+	},
+	
+	'dragEnd' : function(oCustomEvent){
+		addConsole('[dragEnd]');
+	}
+});
+
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

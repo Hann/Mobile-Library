@@ -1,0 +1,140 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+body{-webkit-user-select:none;}
+.check{margin-top: -2px;vertical-align:middle;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div id="layer1" style="margin:10px 0;height:150px;background-color:#ff7f5c;text-align:center;font-size:.85em;">
+			<p style="padding-top:10px;"> 영역 내에서  <span style="color:white;font-weight:bold;">tap, doubleTap, longTap</span>에 대한 커스텀 이벤트를 확인 할 수 있습니다. </p>
+			<p style="padding-top:5px;">doubleTap 커스텀이벤트를 사용하면  tap 이벤트가 touchEnd 시점보다  nDoubleTapDuration 옵션 시간 만큼 늦습니다.</p>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			Tap을 판단하는 움직임 최소 거리 <input type="text" id="nTap" class="op_w50" value="6"><br>
+			longTap을 판단하는 기준 시간 <input type="text" id="nLongTapTime" class="op_w50" value="1000"> (ms)<br>
+			doubleTap을 판단하는 기준 시간 <input type="text" id="nDblTapTime" class="op_w50" value="400"> (ms)<br>
+			<input type="checkbox" id="dblEvent" class='check' checked="true"> doubleTap 커스텀 이벤트 사용&nbsp;&nbsp;<button type="button" id="apply" class="btn">적용</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer1"></div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oTouch = new jindo.m.Touch('layer1');
+	oTouch.attach({
+		tap : function(e) {... 생략 ...},
+		longTap : function(e) {... 생략 ...},
+		doubleTap : function(e) {... 생략 ...}
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Touch.js" charset="uft-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var elBody = document.body;
+var oTouch = new jindo.m.Touch('layer1');
+var fDoubleTapHandler = function (oCustomEvt){
+	addConsole('doubleTap → 현재 좌표 X:'+oCustomEvt.nX+", Y:"+oCustomEvt.nY);
+}
+oTouch.attach({		
+	'longTap' : function(oCustomEvt){
+		addConsole('longTap → 현재 좌표 X:'+oCustomEvt.nX+", Y:"+oCustomEvt.nY);
+	},		
+	'tap' : function(oCustomEvt){			
+		addConsole('tap → 현재 좌표 X:'+oCustomEvt.nX+", Y:"+oCustomEvt.nY);
+	}
+});
+oTouch.attach('doubleTap', fDoubleTapHandler);
+
+//apply button	
+function apply(){
+	oTouch.option('nLongTapDuration', jindo.$('nLongTapTime').value);
+	oTouch.option('nDoubleTapDuration', jindo.$('nDblTapTime').value);
+	oTouch.option('nTapThreshold', jindo.$('nTap').value);
+	
+	var elCheck = jindo.$('dblEvent');
+	
+	if(elCheck.checked){
+		if(typeof oTouch._htEventHandler['doubleTap'] == 'undefined' || (oTouch._htEventHandler['doubleTap'].length == 0)) {			
+			oTouch.attach('doubleTap', fDoubleTapHandler);
+		}else{
+			oTouch.detach('doubleTap', fDoubleTapHandler);
+			oTouch.attach('doubleTap', fDoubleTapHandler);
+		}
+	}else{
+		if(typeof oTouch._htEventHandler['doubleTap'] != 'undefined' && (oTouch._htEventHandler['doubleTap'].length > 0)) {
+			oTouch.detach('doubleTap', fDoubleTapHandler);
+		}
+	}
+	addConsole('적용 되었습니다');
+}
+
+jindo.$Fn(function(evt){
+	evt.stop();
+	apply();
+}, this).attach(jindo.$('apply'),'click');
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

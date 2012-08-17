@@ -1,0 +1,163 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+.u_dsc{padding:50px 10px 20px;background:url(../im/ico_dsc.gif) no-repeat 50% 1.43em;font-size:.85em;text-align:center}
+.u_dsc h2{border:0px;background:none;color:#000;font-size:0.93em;}
+.u_dsc_q{background-image:url(../im/ico_dsc_q.gif)}
+.u_dsc_n{background-image:url(../im/ico_dsc_n.gif)}
+.u_dsc .uc_h{font-size:1em;padding: 1em 0.1em 0.4em 0.5em;}
+.u_dsc .uc_st{font-weight:bold;color:#3AA6B5}
+.u_dsc .uc_st_q{font-weight:bold;color:#32a800}
+.u_dsc .uc_st_n{font-weight:bold;color:#FF6347}
+.u_dsc .uc_wn{white-space:nowrap}
+.u_dsc .uc_p{margin-top:0.5em;color:#909090}
+.u_dsc .uc_area{margin-top:1.25em}
+.u_dsc .u_btn{display:inline-block;padding:.36em .8em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));font-size:.93em;color:#666;letter-spacing:-1px;white-space:nowrap}
+.u_dsc .u_btn .uc_ico_ck{display:inline-block;margin-left:-.15em;padding-left:1.4em;background:url(../im/ico.gif) no-repeat 0 3px}
+.guioHeaderClose {position:absolute;right:10px;top:10px;width:28px;height:28px;border:0;background:none;cursor:pointer;}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div class="lm">
+			Text 치환하여 Dialog 띄우기
+			<p class="dot">show()함수를 사용하여 Dialog Template의 Text 치환하기</p>
+		</div>	
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op" style="line-height:20px;">
+			<button type="button" class="btn" onclick="show(1);return false;">(1) Open Dialog</button><br>
+			<p style="padding:5px 0px;">Dialog.show({class1:"<span class="keyword">u_dsc</span>", class2:"<span class="keyword">uc_st</span>", type:"<span class="keyword">일반형</span>"});</p><br>
+			<button type="button" class="btn" onclick="show(2);return false;">(2) Open Dialog</button><br>
+			<p style="padding:5px 0px;">Dialog.show({class1:"<span class="keyword">u_dsc_q</span>", class2:"<span class="keyword">uc_st_q</span>", type:"<span class="keyword">질문형</span>"});</p><br>
+			<button type="button" class="btn" onclick="show(3);return false;">(3) Open Dialog</button><br>
+			<p style="padding:5px 0px;">Dialog.show({class1:"<span class="keyword">u_dsc_n</span>", class2:"<span class="keyword">uc_st_n</span>", type:"<span class="keyword">경고형</span>"});</p>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<div id="demo">
+		<div class="lm">
+			<p class="dot">Dialog Template</p>
+			<p class="sub_box">
+				&lt;div class="<span class="keyword b">{=class1}</span>" style="background-color:white;border:2px solid #777777;"&gt;<br>
+				<span class="tab1">&lt;h2 class="uc_h"&gt;&lt;strong class="<span class="keyword b">{=class2}</span>"&gt;<span class="keyword b">{=type}</span>&lt;/strong&gt; Dialog입니다.&lt;/h2&gt;</span><br/>
+				<span class="tab1">&lt;div class="uc_area"&gt;</span><br/>
+				<span class="tab2">&lt;a href="#" class="u_btn dialog-confirm" onClick="return false;"&gt;확인&lt;/a&gt;</span><br/>
+				<span class="tab1">&lt;/div&gt;</span><br/>
+				&lt;/div&gt;
+			</p>
+		</div>		
+	</div>
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oDialog = new jindo.m.Dialog();
+	
+	var sTemplate = '<div><h2 class="uc_h">{=type} Dialog입니다.</h2>...생략...</div>';
+	oDialog.setTemplate(sTemplate);
+	
+	oDialog.show({ 
+		type : "일반형",
+		...생략... 
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.SlideEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.PopEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.FlipEffect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.FadeEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.Dialog.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oDialog = new jindo.m.Dialog();
+var aTemplate = [];
+aTemplate.push('<div class="u_dsc {=class1}" style="background-color:white;border:2px solid #777777;">');
+aTemplate.push('<h2 class="uc_h"><strong class="{=class2}">{=type}</strong> Dialog입니다.</h2>');
+aTemplate.push('<div class="uc_area">');
+aTemplate.push('<a href="#" class="u_btn dialog-confirm" onClick="return false;">확인</a> ');
+aTemplate.push('</div>');
+aTemplate.push('</div>');
+var sTemplate = aTemplate.join("");
+oDialog.setTemplate(sTemplate);
+
+function show(sType) {
+	var htTemplate;
+	if(sType == 1) {
+		htTemplate = {
+			class1 : "u_dsc",
+			class2 : "uc_st",
+			type : "일반형"
+		};
+	} else if(sType == 2) {
+		htTemplate = {
+			class1 : "u_dsc_q",
+			class2 : "uc_st_q",
+			type : "질문형"
+		};
+	} else if(sType == 3) {
+		htTemplate = {
+			class1 : "u_dsc_n",
+			class2 : "uc_st_n",
+			type : "경고형"
+		};
+	}
+	
+	oDialog.show(htTemplate);
+}
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

@@ -1,0 +1,27 @@
+.used {
+    background-color:#BDBDBE;
+}
+
+.unused {
+    background-color:#88C1EB;
+}
+
+.disable {
+    background-color:#BD2643;
+}
+table {
+   width : 100%; 
+   height : 80px;
+   margin : 0px 0px , 5px, 5px;
+
+}
+
+td {
+    border-radius : 3px;
+    text-align : center;
+}
+
+ul {
+    -webkit-padding-start: 0px;
+
+}

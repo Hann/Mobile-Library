@@ -1,0 +1,228 @@
+{+include("header.html")+}
+
+<style>
+.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap;}
+.u_pg2 em{font-style:normal;}
+.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+.u_pg2_btn.uc_vh{visibility:hidden}
+.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+.u_pg2_total{color:#999}
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo">
+		<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<p><span style='color:#ff00ff;'>Case 1.</span> info 영역이   <span style="color:#32a800;">현재아이템시작 인덱스-현재아이템 끝 인덱스/전체아이템개수</span>  일 경우</p>
+			<div class="u_pg2" id='paging'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				<!-- [D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 -->
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>
+				
+				
+				<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>
+				
+				<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+				<!-- [D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 -->
+				<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+				 
+			</div>
+		</div>
+		<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<p><span style='color:#ff00ff;'>Case 2.</span> info 영역이 <span style="color:#32a800;">현재페이지/전체페이지</span> 일 경우</p>
+			<div class="u_pg2" id='itemCount'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				<!-- [D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 --> 
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>
+				
+				
+				<em class="u_pg2_pg page-info ">1-10</em>
+				
+				<a href="#" class="u_pg2_btn page-next "><span class="u_pg2_next">다음</span></a>
+				<!--[D] 이전, 다음 링크가 없을 경우 <a> 대신 <span> 태그 사용 및 uc_vh 클래스 추가 --> 
+				<span class="u_pg2_btn page-next-off" style="display:none"><span class="u_pg2_next">다음</span></span>
+			</div>
+		</div>
+		
+		<div style="margin:10px;padding:10px;border:1px solid #e9e9e9;font-size:13px;">
+			<p><span style='color:#ff00ff;'>Case 3.</span> 페이징이 생기지 않을 경우</p>
+			<div class="u_pg2" id='noPaging'>
+				<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+				
+				<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>
+				
+				
+				<em class="u_pg2_pg page-info ">1-10</em>
+				
+				<a href="#" class="u_pg2_btn page-next "><span class="u_pg2_next">다음</span></a>
+				
+				<span class="u_pg2_btn page-next-off" style="display:none"><span class="u_pg2_next">다음</span></span>
+			</div>
+		</div>
+	
+	</div>
+	<!--// Demo 영역 -->
+	
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	.u_pg2{padding:15px 0;font-size:.86em;text-align:center;white-space:nowrap;}
+	.u_pg2 em{font-style:normal;}
+	.u_pg2_btn{display:inline-block;padding:.42em .86em;border:1px solid #bcbcbc;background:#f1f1f1;background:-webkit-gradient(linear,0 0,0 100%,from(#fff),color-stop(.05,#fbfbfb),to(#f1f1f1));color:#666}
+	.u_pg2_btn.uc_vh{visibility:hidden}
+	.u_pg2_prev,.u_pg2_next{display:inline-block;background:url(../im/ico_pg2.gif) no-repeat;font-size:1.07em}
+	.u_pg2_prev{padding-left:.86em;background-position:0 4px}
+	.u_pg2_next{padding-right:.86em;background-position:100% -35px}
+	.u_pg2_pg{display:inline-block;padding:.42em .85em;font-weight:bold;color:#32a800}
+	.u_pg2_total{color:#999}
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div class="u_pg2" id='paging'>
+		<a href="#" class="u_pg2_btn page-prev"><span class="u_pg2_prev">이전</span></a>
+		<span class="u_pg2_btn page-prev-off"><span class="u_pg2_prev">이전</span></span>			
+		<em class="u_pg2_pg page-info">1-10 <span class="u_pg2_total">/ 200</span></em>				
+		<a href="#" class="u_pg2_btn page-next"><span class="u_pg2_next">다음</span></a>
+		<span class="u_pg2_btn page-next-off"><span class="u_pg2_next">다음</span></span>
+				 
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : 100, //아이템 개수
+		nItemPerPage : 6,
+		nPage : 1,
+		sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>'
+	});
+	
+	var oPage2 = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : 30, //아이템 개수
+		nItemPerPage : 6,
+		nPage : 1,
+		sInfoTemplate : '{=PAGE}/{=TOTALPAGE}'
+	});
+	
+	var oPage3 = new jindo.m.PageNavigation(jindo.$('paging'),{
+		sClassPrefix : 'page-',
+		nItem : 5, //아이템 개수
+		nItemPerPage : 6,
+		nPage : 1,
+		sInfoTemplate : '{=PAGE}/{=TOTALPAGE}'
+	})
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.CorePagination.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.PageNavigation.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var oPage = new jindo.m.PageNavigation(jindo.$('paging'),{
+	sClassPrefix : 'page-',
+	nItem : 100, //아이템 개수
+	nItemPerPage : 6,
+	nPage : 1,
+	sInfoTemplate : '{=STARTINDEX}-{=ENDINDEX}<span class="u_pg2_total">/ {=ITEMCOUT}</span>'
+}).attach({
+	'beforeMove' : function(oEvt){
+		var sText = oEvt.sType + " → " + " 현재페이지 : " + oEvt.nCurrentPage+" ,이동페이지 : "+ oEvt.nPage;
+		addConsole(sText);	
+	},
+	'move' : function(oEvt){
+		var sText = oEvt.sType + " → " + oEvt.nPage + "페이지 이동완료!";
+		addConsole(sText);
+	}
+});
+oPage.movePageTo(1, false);
+
+var oPage2 = new jindo.m.PageNavigation(jindo.$('itemCount'),{
+	sClassPrefix : 'page-',
+	nItem : 30, //아이템 개수
+	nItemPerPage : 6,
+	nPage : 1,
+	sInfoTemplate : '{=PAGE}/{=TOTALPAGE}'
+}).attach({
+	'beforeMove' : function(oEvt){
+		var sText = oEvt.sType + " → " + " 현재페이지 : " + oEvt.nCurrentPage+" ,이동페이지 : "+ oEvt.nPage;
+		addConsole(sText);	
+	},
+	'move' : function(oEvt){
+		var sText = oEvt.sType + " → " + oEvt.nPage + "페이지 이동완료!";
+		addConsole(sText);
+	}
+});
+//바로 3페이지로 이동
+oPage2.movePageTo(3, false);
+
+
+var oPage3 = new jindo.m.PageNavigation(jindo.$('noPaging'),{
+	sClassPrefix : 'page-',
+	nItem : 5, //아이템 개수
+	nItemPerPage : 6,
+	nPage : 1,
+	sInfoTemplate : '{=PAGE}/{=TOTALPAGE}'
+}).attach({
+	'beforeMove' : function(oEvt){
+		var sText = oEvt.sType + " → " + " 현재페이지 : " + oEvt.nCurrentPage+" ,이동페이지 : "+ oEvt.nPage;
+		addConsole(sText);	
+	},
+	'move' : function(oEvt){
+		var sText = oEvt.sType + " → " + oEvt.nPage + "페이지 이동완료!";
+		addConsole(sText);
+	}
+});
+//바로 3페이지로 이동
+oPage3.movePageTo(1, false);
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}

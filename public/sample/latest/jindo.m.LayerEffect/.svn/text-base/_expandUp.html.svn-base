@@ -1,0 +1,176 @@
+{+include("header.html")+}
+
+<style>
+/* 개별 Sample 관련 CSS */
+</style>
+
+<!-- Content -->
+<div id="ct" class="content">
+    <h2 class="h_lft">{=COMPONENT}</h2>
+    
+    <!-- ViewSource -->
+    <div id="view_source" class="view_source">
+    	<div class="_view_status vs"><a href="#">view source</a><span class="ic_vc"></span></div>
+	    <div class="sc">
+	        <div class="_view_code sc_info" style="display:none;">
+	       		<div>
+					<h2 class="h2_code">CSS</h2>
+					<!-- 마크업 구조 -->
+					<textarea class="brush: css;">{=CSS}</textarea>	
+				</div>
+				<div>
+					<h2 class="h2_code">HTML</h2>
+					<textarea class="brush: xml;">{=HTML}</textarea>
+				</div>
+				<div>
+					<h2 class="h2_code">SCRIPT</h2>
+					<textarea class="brush: javascript;">{=SCRIPT}</textarea>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	<!--// ViewSource -->
+
+	<!-- Demo 영역 -->
+	<div id="demo" style="padding:10px 0;overflow:hidden;">
+		<div class="lm" style="margin:0px;padding:0px;">
+			<div id="layer1" style="background-color:#77BD2C;">
+				<div style="padding:10px;height:150px;overflow:hidden;">
+					<p>위쪽으로 확장되는 레이어</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--// Demo 영역 -->
+	
+	<!-- Option 영역 -->
+	<div id="option">
+		<div class="op">
+			<input type="text" class="op_w50" value="1000" id="nDuration">(ms) 시간동안 위쪽으로   
+			 <button type="button"  id='expand'  class="btn">expand</button>
+	    </div>
+	</div>
+	<!--// Option 영역 -->
+
+	<!-- Log 영역 -->
+    <div class="scroll">
+        <button type="button" id="delConsole" class="btn_del">로그모두삭제</button>
+        <textarea title="로그" id="txtConsole" class="tarea"></textarea>
+    </div>
+    <!-- Log 영역 -->
+</div>
+<!--// Content -->
+
+<!-- ViewSource Template 영역 -->
+<div style="display:none;">
+	<textarea>
+	/*includeCSS*/	
+	/*includeCSSEnd*/	
+	
+	
+	<!--includeHtml -->
+	<div id="layer">
+		레이어
+	</div>
+	<!--includeHtmlEnd -->
+	
+	
+	/*includeScript*/
+	var oEffect = new jindo.m.LayerEffect('layer');
+	
+	oEffect.expand({
+		sDirection: 'up',
+		nDuration : 1000 
+	});
+	/*includeScriptEnd*/
+	</textarea>
+</div>
+<!--// ViewSource Template 영역끝 -->
+
+<!-- 사용자 script 파일 시작 -->
+<script src="../../../source/jindo.m.Transition.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.Effect.js" charset="utf-8"></script>
+<script src="../../../source/effect/jindo.m.ExpandEffect.js" charset="utf-8"></script>
+<script src="../../../source/jindo.m.LayerEffect.js" charset="utf-8"></script>
+<!-- 사용자 script 파일 끝 -->
+
+<!-- Sample 실행 script 코드 -->
+<script type="text/javascript">
+var welContents = jindo.$Element('ct');
+var welDemo = jindo.$Element('demo');
+var welLayer = jindo.$Element('layer1');
+
+var nInitH = welDemo.height();
+var nMinLayerH = 250;	
+
+//화면리사이즈 처리
+function setSize(){
+	welDemo.height(nInitH);
+	
+	var nCurrentH = welContents.height();
+	var nScreenH =  jindo.$Document().clientSize().height;
+	
+	
+	if(nCurrentH > nScreenH){ //스크롤이 생겼을 경우
+		var nNewH = nCurrentH - nScreenH;
+		nNewH = nInitH - nNewH;
+		nNewH = Math.max(nMinLayerH, nNewH);
+	}else{ //화면이 클경우
+		var nNewH = nScreenH - nCurrentH + nInitH -50;		
+	}
+	
+	welDemo.height(nNewH);
+	welLayer.height(nNewH-20);		
+	//border 1px
+	welLayer.width(welDemo.width()-2);	
+}
+setSize();
+
+//화면 로테이션 및 리사이즈 처리
+jindo.m.bindRotate(jindo.$Fn(this.setSize, this).bind());
+
+
+// 이펙트 초기화
+	var oEffect = new jindo.m.LayerEffect(welLayer.$value());
+	
+	oEffect.attach({
+		'beforeEffect' : function(oCustomEvt){ 
+			addConsole('before → '+ oCustomEvt.sEffect +' 발생전');
+		},		
+		'afterEffect' : function(oCustomEvt){
+			addConsole('end → '+ oCustomEvt.sEffect +' 완료');
+		}	
+	});
+	
+var wfExpandUp = jindo.$Fn(function(){
+		if(oEffect.isPlaying()){
+			alert('현재 확대중이예요!!');			
+			return;
+		}
+		
+		//화면 리사이즈에 대한 사이즈 수정
+		oEffect.setSize();
+		
+		var htOption={sDirection:'up'};
+		
+		var nTime = jindo.$('nDuration').value;
+		if(nTime.length > 0){
+			htOption.nDuration = nTime*1;	
+		}
+		
+		oEffect.expand(htOption);
+},this);
+
+wfExpandUp.attach(jindo.$('expand'), 'click');
+
+jindo.$Fn(function(){
+		//window load시에 setSize 함수 수행하기 때문에 interval을 두고 실행함
+		setTimeout(function(){
+			wfExpandUp.$value()();
+		},500);
+},this).attach(window,'load');
+	
+</script>
+<!--// Sample 실행 script 코드 끝-->
+
+{+include("footer.html")+}
