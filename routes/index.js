@@ -7,19 +7,19 @@ var parse = require('../parse');
 
 exports.index = function(req, res){
     parse('1', function(seat_info){
-	    res.render('index', { title: '2층 1열람실' , roomstate : JSON.stringify(seat_info) });
+	res.render('index', { title: '2층 1열람실' , roomstate : JSON.stringify(seat_info), js : 'index.js'}); 
 	});
 };
 
 exports.lib22 = function(req, res){
     parse('2', function(seat_info){
-	    res.render('lib22', { title: '2층 2열람실' , roomstate : JSON.stringify(seat_info) });
+	res.render('lib22', { title: '2층 2열람실' , roomstate : JSON.stringify(seat_info), js : 'lib22.js'});
 	});
 };
 
 exports.lib23 = function(req, res){
     parse('3', function(seat_info){
-	    res.render('lib23', { title: '2층 3열람실' , roomstate : JSON.stringify(seat_info) });
+	res.render('lib23', { title: '2층 3열람실' , roomstate : JSON.stringify(seat_info), js :'lib23.js'});
 	});
 };
 exports.lib46 = function(req, res){
