@@ -28,13 +28,21 @@ div(data-role="page")
     ul
       li(style='display:block')
         div
-        - var table_no_array = [['1','2','3','4','5'], ['10','9','8','7','6']]
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
         mixin generateTable(table_no_array)
-        - var table_no_array = [['11','12','13','14','15'], ['20','19','18','17','16']]
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
         mixin generateTable(table_no_array)
-        - var table_no_array = [['21','22','23','24','25'], ['30','29','28','27','26']]
-         mixin generateTable(table_no_array)
-        - var table_no_array = [['31','32','33','34','35'], ['40','39','38','37','36']]
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['1','2','3','4','5','6'], ['22', '23', '24', '25', '26', '27']]
         mixin generateTable(table_no_array)
 
       li(style='display:none')
@@ -58,5 +66,8 @@ div(data-role="page")
         mixin generateTable(table_no_array)
        - var table_no_array = [['145','144','143','142','141','140','139'], ['146','147','148','149','150','151','152']]
         mixin generateTable(table_no_array)
-  div(data-theme="d",data-role="footer")
-    h3 @hannJS
+
+  div(data-theme="d",data-role="footer",onClick='moveToAskFm()')
+    h3 HannJS에게 건의
+
+
