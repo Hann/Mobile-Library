@@ -32,7 +32,7 @@ app.get('/', routes.index);
 app.get('/2/1', routes.index);
 app.get('/2/2', routes.lib22);
 app.get('/2/3', routes.lib23);
-app.get('/2/6', routes.lib46);
+app.get('/4/6', routes.lib46);
 app.get('/4/7', routes.lib47);
 
 

@@ -1,1 +1,83 @@
+mixin generateTable(two_dimension_array)
+  table.table.table-bordered
+    tbody
+      for i_two in two_dimension_array
+        tr
+          - var array_len = 100 / i_two.length
+          for i_one in i_two
+            td(id = '_#{i_one}', style = 'width : #{array_len}%') #{i_one}
+
+
+
+div(data-role="page")
+  div(data-role="header")
+    h1 #{title}
+    a.ui-btn-right(data-icon="refresh",onClick="history.go()") Refresh
+    div(data-role="navbar",data-theme="d",data-iconpos="top")
+      ul
+        li
+          a(rel="external", data-ajax="false", href="/2/1",data-theme="d",data-icon="") 2-1열
+        li
+          a(rel="external", data-ajax="false", href="/2/2",data-theme="d",data-icon="") 2-2열
+        li
+          a(rel="external", data-ajax="false", href="/2/3",data-theme="d",data-icon="") 2-3열
+        li
+          a(rel="external", data-ajax="false", href="#",data-theme="d",data-icon="",class="ui-btn-active") 4-6열
+        li
+          a(rel="external", data-ajax="false", href="/4/7",data-theme="d",data-icon="") 4-7열
+  div#slider(data-role="content")
+    ul
+      li(style='display:block')
+        div
+        - var table_no_array = [['217','218','219','220','221','222','223','224'], ['216','215','214','213','212','211','210','209']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['177','178','179','180','181','182','183','184'], ['176','175','174','173','172','171','170','169']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['138','139','140','141','142','143','144',''], ['137','136','135','134','133','132','131','']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['99','100','101','102','103','104','105','106'], ['98','97','96','95','94','93','92','91']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['59','60','61','62','63','64','65','66'], ['58','57','56','55','54','53','52','51']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['','','','','','','',''], ['','','','','','','','']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['','','','','26','25','',''], ['','','','','1','2','','']]
+        mixin generateTable(table_no_array)
+
+      li(style='display:none')
+        div
+        - var table_no_array = [['225','226','227','228','229','230'], ['208','207','206','205','204','203']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['185','186','187','188','189','190'], ['168','167','166','165','164','163']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['145','146','147','148','149','150'], ['130','129','128','127','126','125']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['107','108','109','110','111','112'], ['90','89','88','87','86','85']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['67','68','69','70','71','72'], ['50','49','48','47','46','45']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['27','28','29','30','31','32'], ['24','23','22','21','20','19']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['','3','4','5','6','7'], ['','','','','','']]
+        mixin generateTable(table_no_array)
+
+      li(style='display:none')
+        div
+        - var table_no_array = [['231','232','233','234','235','236'], ['202','201','200','199','198','197']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['191','192','193','194','195','196'], ['162','161','160','159','158','157']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['151','152','153','154','155','156'], ['124','123','122','121','120','119']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['113','114','115','116','117','118'], ['84','83','82','81','80','79']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['73','74','75','76','77','78'], ['44','43','42','41','40','39']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['33','34','35','36','37','38'], ['18','17','16','15','14','13']]
+        mixin generateTable(table_no_array)
+        - var table_no_array = [['','8','9','10','11','12'], ['','','','','','']]
+        mixin generateTable(table_no_array)
+
+  div(data-theme="d",data-role="footer",onClick='moveToAskFm()')
+    h3 HannJS에게 건의
  
