@@ -22,8 +22,3 @@ for (var i = 0; i < room.length; i++){
 }
   });
 
-
-
-function moveToAskFm() {
-    window.open('http://ask.fm/HannJS');
-}

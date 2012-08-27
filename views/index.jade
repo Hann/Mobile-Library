@@ -8,6 +8,7 @@ mixin generateTable(two_dimension_array)
             td(id = '_#{i_one}', style = 'width : #{array_len}%') #{i_one}
 
 
+
 div(data-role="page")
   div(data-role="header")
     h1 #{title}
@@ -15,15 +16,15 @@ div(data-role="page")
     div(data-role="navbar",data-theme="d",data-iconpos="top")
       ul
         li
-          a(href="#",data-theme="d",data-icon="",class="ui-btn-active") 2-1열
+          a(rel="external", data-ajax="false", href="#",data-theme="d",data-icon="",class="ui-btn-active") 2-1열
         li
-          a(href="/2/2",data-theme="d",data-icon="") 2-2열
+          a(rel="external", data-ajax="false", href="/2/2",data-theme="d",data-icon="") 2-2열
         li
-          a(href="/2/3",data-theme="d",data-icon="") 2-3열
+          a(rel="external", data-ajax="false", href="/2/3",data-theme="d",data-icon="") 2-3열
         li
-          a(href="/4/6",data-theme="d",data-icon="") 4-6열
+          a(rel="external", data-ajax="false", href="/4/6",data-theme="d",data-icon="") 4-6열
         li
-          a(href="/4/7",data-theme="d",data-icon="") 4-7열
+          a(rel="external", data-ajax="false", href="/4/7",data-theme="d",data-icon="") 4-7열
   div#slider(data-role="content")
     ul
       li(style='display:block')
@@ -59,5 +60,6 @@ div(data-role="page")
         - var table_no_array = [['145','144','143','142','141','140','139'], ['146','147','148','149','150','151','152']]
         mixin generateTable(table_no_array)
 
-  div(data-theme="d",data-role="footer")
-    h3 @hannJS
+  div(data-theme="d",data-role="footer",onClick='moveToAskFm()')
+    h3 HannJS에게 건의
+// script(src='/javascripts/#{roomName}.js')
